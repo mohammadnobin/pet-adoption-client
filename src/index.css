@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+
+nav.active {
+  @apply text-lime-600 font-semibold border-b-2 border-lime-600;
+}

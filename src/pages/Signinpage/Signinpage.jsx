@@ -25,6 +25,7 @@ const Signinpage = () => {
     const { email, password } = data;
     try {
       await signIn(email, password);
+        navigate(from);
       const userInfo = {
         email,
         role: "user",
@@ -32,7 +33,7 @@ const Signinpage = () => {
         last_log_in: new Date().toISOString(),
       };
       await axios.post(`${import.meta.env.VITE_BASE_URL}/users`, userInfo);
-      navigate(from);
+    
       Swal.fire({
         title: "Good job!",
         text: "SignUp Successfull",
@@ -45,7 +46,6 @@ const Signinpage = () => {
         text: error?.message,
       });
     }
-    console.log(data);
   };
 
   return (
@@ -113,7 +113,7 @@ const Signinpage = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
+        className="w-full cursor-pointer bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
       >
         {loading ? (
           <TbFidgetSpinner className="animate-spin text-2xl" />

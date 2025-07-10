@@ -15,6 +15,7 @@ const Social = () => {
   const handleSocialLogin = () => {
     socialLoging()
       .then(async (res) => {
+        navigate(from);
         const user = res.user;
         const userInfo = {
           email: user.email,
@@ -23,13 +24,12 @@ const Social = () => {
           last_log_in: new Date().toISOString(),
         };
         await axios.post(`${import.meta.env.VITE_BASE_URL}/users`, userInfo);
-        navigate("/");
+
         Swal.fire({
           title: "Good job!",
           text: "SignUp Successfull",
           icon: "success",
         });
-        navigate(from);
       })
       .catch((error) => {
         Swal.fire({

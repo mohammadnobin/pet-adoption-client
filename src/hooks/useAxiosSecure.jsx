@@ -3,7 +3,7 @@ import axios from "axios";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 
-const axiosSecoure = axios.create({
+const axiosSecure = axios.create({
   baseURL: `${import.meta.env.VITE_BASE_URL}`,
 });
 
@@ -11,14 +11,14 @@ const useAxiosSecure = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
-  axiosSecoure.interceptors.request.use((config) => {
+  axiosSecure.interceptors.request.use((config) => {
     config.headers.authorization = `Bearer ${user?.accessToken}`;
     return config;
   },
     (error) => {
       return Promise.reject(error);
     })
-  axiosSecoure.interceptors.response.use(
+  axiosSecure.interceptors.response.use(
     (res) => {
       return res;
     },
@@ -36,7 +36,7 @@ const useAxiosSecure = () => {
       return Promise.reject(error);
     }
   );
-  return axiosSecoure;
+  return axiosSecure;
 };
 
 export default useAxiosSecure;

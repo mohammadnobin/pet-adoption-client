@@ -5,7 +5,6 @@ import { imageUpload } from "../../api/utils";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useAuth from "../../hooks/useAuth";
 
 const categories = [
   { value: "Dog", label: "Dog" },
@@ -15,8 +14,7 @@ const categories = [
   { value: "Other", label: "Other" },
 ];
 
-const AddPetPage = () => {
-  const {user} = useAuth()
+const UpDatePetPage = () => {
   const axiosSecure  = useAxiosSecure();
   const [uploadedImage, setUploadedImage] = useState(null);
   const {
@@ -71,7 +69,6 @@ const AddPetPage = () => {
       shortDescription: shortDesc,
       longDescription: longDesc,
       adopted: "notAdopted",
-      ownerEmail: user.email,
       addedAt: new Date().toISOString(),
     };
 
@@ -212,13 +209,6 @@ const AddPetPage = () => {
         </div>
 
         {/* Submit Button */}
-        {/* <button
-          type="submit"
-          className="bg-lime-600 hover:bg-lime-700 text-white font-semibold py-3 px-6 rounded w-full"
-        >
-          {isPending }
-          Submit Pet
-        </button> */}
         <button
           type="submit"
           className="bg-lime-600 hover:bg-lime-700 text-white font-semibold py-3 px-6 rounded w-full"
@@ -231,4 +221,4 @@ const AddPetPage = () => {
   );
 };
 
-export default AddPetPage;
+export default UpDatePetPage;

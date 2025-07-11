@@ -26,10 +26,10 @@ export const router = createBrowserRouter([
         // loader:()=> axios.get(`${import.meta.env.VITE_BASE_URL}/users`),
         element: <HomePage />,
       },
-      // {
-      //   path: "pets",
-      //   element: <PetListPage />,
-      // },
+      {
+        path: "pets",
+        element: <PetListPage />,
+      },
       {
         path: "donations",
         element: <Donationpage />,

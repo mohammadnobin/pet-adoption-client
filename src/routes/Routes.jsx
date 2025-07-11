@@ -23,7 +23,6 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // loader:()=> axios.get(`${import.meta.env.VITE_BASE_URL}/users`),
         element: <HomePage />,
       },
       {
@@ -64,10 +63,10 @@ export const router = createBrowserRouter([
             path: 'add-pet',
             element: <AddPetPage />
         },
-        // {
-        //   path:'my-pets',
-        //   element:<MyAddedPets />
-        // },
+        {
+          path:'my-pets',
+          element:<MyAddedPets />
+        },
         {
           path:'adoption-requests',
           element:<AdoptionRequestPage />

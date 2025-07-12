@@ -39,10 +39,10 @@ export const router = createBrowserRouter([
         path: "donations",
         element: <Donationpage />,
       },
-      // {
-      //   path: 'donationDetais/:id',
-      //   element: <DonationDetails />
-      // },
+      {
+        path: 'donationDetais/:id',
+        element: <DonationDetails />
+      },
       {
         path: "forbidden",
         element: <Forbidden />,

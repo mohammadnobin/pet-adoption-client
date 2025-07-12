@@ -29,8 +29,8 @@ const Signinpage = () => {
       const userInfo = {
         email,
         role: "user",
-        create_at: new Date().toISOString(),
-        last_log_in: new Date().toISOString(),
+          created_at: new Date().toISOString(),
+          last_log_in: new Date().toISOString(),
       };
       await axios.post(`${import.meta.env.VITE_BASE_URL}/users`, userInfo);
     

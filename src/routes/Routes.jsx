@@ -104,15 +104,15 @@ export const router = createBrowserRouter([
         },
         {
           path: 'users',
-          element: <Users />
+          element:<AdminRoute><Users /></AdminRoute> 
         },
         {
           path: 'all-donations',
-          element: <AllDonations />
+          element:<AdminRoute><AllDonations /></AdminRoute> 
         },
         {
           path: 'all-pets',
-          element:<AllPets />
+          element:<AdminRoute><AllPets /></AdminRoute> 
         }
 
     ]

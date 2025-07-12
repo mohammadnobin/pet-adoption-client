@@ -20,6 +20,7 @@ const Social = () => {
         const userInfo = {
           email: user.email,
           role: "user",
+          photo: user.photoURL ,
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };

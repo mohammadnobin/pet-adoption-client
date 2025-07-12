@@ -125,7 +125,7 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {role === 'user' &&
+              {role === 'admin' &&
               <>
               {/* My Donations */}
               <SidebarMenuItem>

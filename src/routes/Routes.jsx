@@ -102,10 +102,10 @@ export const router = createBrowserRouter([
           path: 'profile',
           element: <MyProfilePage />
         },
-        // {
-        //   path: 'users',
-        //   element: <Users />
-        // },
+        {
+          path: 'users',
+          element: <Users />
+        },
         // {
         //   path: 'all-donations',
         //   element: <AllDonations />

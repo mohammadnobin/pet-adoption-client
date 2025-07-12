@@ -35,10 +35,10 @@ export const router = createBrowserRouter([
         path: '/pet-details/:id',
         element: <PetDetailsPage />
       },
-      // {
-      //   path: "donations",
-      //   element: <Donationpage />,
-      // },
+      {
+        path: "donations",
+        element: <Donationpage />,
+      },
       // {
       //   path: 'donationDetais/:id',
       //   element: <DonationDetails />

@@ -106,14 +106,14 @@ export const router = createBrowserRouter([
           path: 'users',
           element: <Users />
         },
-        // {
-        //   path: 'all-donations',
-        //   element: <AllDonations />
-        // },
-        // {
-        //   path: 'all-pets',
-        //   element:<AllPets />
-        // }
+        {
+          path: 'all-donations',
+          element: <AllDonations />
+        },
+        {
+          path: 'all-pets',
+          element:<AllPets />
+        }
 
     ]
   },

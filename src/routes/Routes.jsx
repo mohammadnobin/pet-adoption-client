@@ -31,10 +31,10 @@ export const router = createBrowserRouter([
         path: "pets",
         element: <PetListPage />,
       },
-      // {
-      //   path: '/pet-details/:id',
-      //   element: <PetDetailsPage />
-      // },
+      {
+        path: '/pet-details/:id',
+        element: <PetDetailsPage />
+      },
       // {
       //   path: "donations",
       //   element: <Donationpage />,

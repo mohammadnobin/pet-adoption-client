@@ -1,98 +1,3 @@
-// import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-
-// import {
-//   Sidebar,
-//   SidebarContent,
-//   SidebarGroup,
-//   SidebarGroupContent,
-//   SidebarGroupLabel,
-//   SidebarMenu,
-//   SidebarMenuButton,
-//   SidebarMenuItem,
-//   SidebarFooter,
-// } from "@/components/ui/sidebar";
-// import { FaPaw } from "react-icons/fa";
-// import { Link } from "react-router";
-
-// // Menu items.
-// const items = [
-//   {
-//     title: "Home",
-//     url: "#",
-//     icon: Home,
-//   },
-//   {
-//     title: "Inbox",
-//     url: "#",
-//     icon: Inbox,
-//   },
-//   {
-//     title: "Calendar",
-//     url: "#",
-//     icon: Calendar,
-//   },
-//   {
-//     title: "Search",
-//     url: "#",
-//     icon: Search,
-//   },
-//   {
-//     title: "Settings",
-//     url: "#",
-//     icon: Settings,
-//   },
-// ];
-
-// export function AppSidebar() {
-//   return (
-//     <Sidebar>
-//       <SidebarContent>
-
-//         {/* 🔰 লোগো */}
-//         <div className="p-4">
-//           <Link
-//             to="/"
-//             className="flex items-center gap-2 text-lime-600 font-bold text-3xl"
-//           >
-//             <FaPaw />
-//             <span>PetAdopt</span>
-//           </Link>
-//         </div>
-
-//         {/* ✅ মেনু শুরু */}
-//         <SidebarGroup>
-//           <SidebarGroupLabel className="text-gray-500 uppercase text-xs px-4">
-//             Menu
-//           </SidebarGroupLabel>
-//           <SidebarGroupContent>
-//             <SidebarMenu>
-//               {items.map((item) => (
-//                 <SidebarMenuItem key={item.title}>
-//                   <SidebarMenuButton asChild>
-//                     <a href={item.url} className="flex items-center gap-2">
-//                       <item.icon className="w-4 h-4" />
-//                       <span>{item.title}</span>
-//                     </a>
-//                   </SidebarMenuButton>
-//                 </SidebarMenuItem>
-//               ))}
-//             </SidebarMenu>
-//           </SidebarGroupContent>
-//         </SidebarGroup>
-
-//       </SidebarContent>
-
-//       <SidebarFooter>
-//         <SidebarMenu>
-//           <SidebarMenuItem>Footer</SidebarMenuItem>
-//         </SidebarMenu>
-//       </SidebarFooter>
-//     </Sidebar>
-//   );
-// }
-
-
-
 import {
   Sidebar,
   SidebarContent,
@@ -112,11 +17,34 @@ import {
   HandCoins,
   Gift,
   HeartHandshake,
-  User, LogOut,
-  PawPrint, // ✅ নতুন icon
+  User,
+  LogOut,
+  PawPrint,
 } from "lucide-react";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
+import useUserRole from "../hooks/useUserRole";
 
 export function AppSidebar() {
+  const { logOut } = useAuth();
+  const { role } = useUserRole();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      Swal.fire({
+        title: "Good job!",
+        text: "SignOut Successfull",
+        icon: "success",
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error?.message,
+      });
+    }
+  };
   return (
     <Sidebar>
       <SidebarContent>
@@ -133,7 +61,6 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-
               {/* ✅ Add a Pet */}
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
@@ -198,56 +125,94 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-
+              {role === 'user' &&
+              <>
               {/* My Donations */}
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink
                     to="/dashboard/my-donations"
                     className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4 "
-                  >
+                    >
                     <HeartHandshake className="w-5 h-5" />
                     <span>My Donations</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              {/* All Donations */}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink
+                    to="/dashboard/all-donations"
+                    className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                    >
+                    <Gift className="w-5 h-5" />
+                    <span>All Donations</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
 
+              {/* All Pets */}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink
+                    to="/dashboard/all-pets"
+                    className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                    >
+                    <PawPrint className="w-5 h-5" />
+                    <span>All Pets</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              {/* Users */}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink
+                    to="/dashboard/users"
+                    className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                    >
+                    <Users className="w-5 h-5" />
+                    <span>Users</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+                      </>
+              }
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
-     <SidebarFooter>
-  <SidebarMenu>
+      <SidebarFooter>
+        <SidebarMenu>
+          {/* 👤 Profile */}
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <NavLink
+                to="/dashboard/profile"
+                className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4 "
+              >
+                <User className="w-5 h-5" />
+                <span>Profile</span>
+              </NavLink>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
 
-    {/* 👤 Profile */}
-    <SidebarMenuItem>
-      <SidebarMenuButton asChild>
-        <NavLink
-          to="/dashboard/profile"
-          className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4 "
-        >
-          <User className="w-5 h-5" />
-          <span>Profile</span>
-        </NavLink>
-      </SidebarMenuButton>
-    </SidebarMenuItem>
-
-    {/* 🚪 Logout */}
-    <SidebarMenuItem>
-      <SidebarMenuButton asChild>
-        <button
-          onClick={() => console.log("Logout triggered")} // এখানে তোমার logout ফাংশন বসবে
-           className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4 "
-        >
-          <LogOut className="w-5 h-5" />
-          <span>Logout</span>
-        </button>
-      </SidebarMenuButton>
-    </SidebarMenuItem>
-
-  </SidebarMenu>
-</SidebarFooter>
+          {/* 🚪 Logout */}
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <button
+                onClick={handleLogout} // এখানে তোমার logout ফাংশন বসবে
+                className="flex cursor-pointer items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4 "
+              >
+                <LogOut className="w-5 h-5" />
+                <span>Logout</span>
+              </button>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }

@@ -54,15 +54,15 @@ const Signinpage = () => {
   {/* Logo */}
   <Link
     to="/"
-    className="absolute top-6 left-6 flex items-center gap-2 text-lime-600 font-bold text-4xl"
+    className="absolute top-6 left-6 flex items-center gap-2 text-secondary font-bold text-4xl"
   >
     <FaPaw />
     <span>PetAdopt</span>
   </Link>
 
   {/* Form Container */}
-  <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-    <h2 className="text-3xl font-bold text-center text-lime-600 mb-2">
+  <div className="w-full max-w-md backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8 border-2 border-secondary/15 shadow-lg rounded-xl p-8">
+    <h2 className="text-3xl font-bold text-center text-secondary mb-2">
       Welcome Back
     </h2>
     <p className="text-center text-gray-500 mb-6">Login with Profast</p>
@@ -76,7 +76,7 @@ const Signinpage = () => {
         <input
           type="email"
           {...register("email", { required: true })}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+          className="w-full border border-secondary/80 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary"
           placeholder="Enter your email"
         />
         {errors.email && (
@@ -92,7 +92,7 @@ const Signinpage = () => {
         <input
           type="password"
           {...register("password", { required: true, minLength: 6 })}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+          className="w-full border border-secondary/80 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary"
           placeholder="Enter password"
         />
         {errors.password?.type === "required" && (
@@ -106,14 +106,14 @@ const Signinpage = () => {
       </div>
 
       {/* Forgot Password */}
-      <p className="text-sm text-right text-lime-600 hover:underline cursor-pointer">
+      <p className="text-sm text-right text-secondary hover:underline cursor-pointer">
         Forgot Password?
       </p>
 
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full cursor-pointer bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
+        className="w-full cursor-pointer bg-secondary hover:bg-secondary/80  text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
       >
         {loading ? (
           <TbFidgetSpinner className="animate-spin text-2xl" />
@@ -128,7 +128,7 @@ const Signinpage = () => {
       Don’t have an account?{" "}
       <Link
         to="/signup"
-        className="text-lime-600 font-medium hover:underline"
+        className="text-secondary font-medium hover:underline"
       >
         Register
       </Link>

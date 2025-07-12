@@ -45,7 +45,7 @@ const Social = () => {
       <h2 className="text-xl text-center font-medium py-3">Or</h2>
       <button
         onClick={handleSocialLogin}
-        className="flex items-center justify-center gap-3 w-full bg-lime-600 border border-gray-300 shadow-sm rounded-lg py-3 px-4 text-white cursor-pointer font-semibold hover:shadow-md transition duration-300"
+        className="flex items-center justify-center gap-3 w-full bg-secondary border border-gray-300 shadow-sm rounded-lg py-3 px-4 text-white cursor-pointer font-semibold hover:shadow-md transition duration-300"
       >
         {loading ? (
           <TbFidgetSpinner className="animate-spin m-auto" />

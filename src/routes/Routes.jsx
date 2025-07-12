@@ -17,6 +17,10 @@ import MyDonationCampaignsPage from "../pages/MyDonationCampaignsPage/MyDonation
 import MyProfilePage from "../pages/MyProfilePage/MyProfilePage";
 import PetDetailsPage from "../pages/PetDetailsPage/PetDetailsPage";
 import DonationDetails from "../pages/DonationDetails/DonationDetails";
+import AdminRoute from "./AdminRoute";
+import Users from "../pages/Users/Users";
+import AllDonations from "../pages/AllDonations/AllDonations";
+import AllPets from "../pages/AllPets/AllPets";
 
 export const router = createBrowserRouter([
   {
@@ -83,7 +87,8 @@ export const router = createBrowserRouter([
         },
         {
           path:'create-campaign',
-          element:<CreateDonationPage />
+          // element:<AdminRoute><CreateDonationPage /></AdminRoute> 
+          element: <CreateDonationPage />
         },
         {
           path: 'my-campaigns',
@@ -93,10 +98,22 @@ export const router = createBrowserRouter([
           path:'my-donations',
           element: <MyDonationPage />
         },
-        {
-          path: 'profile',
-          element: <MyProfilePage />
-        }
+        // {
+        //   path: 'profile',
+        //   element: <MyProfilePage />
+        // },
+        // {
+        //   path: 'users',
+        //   element: <Users />
+        // },
+        // {
+        //   path: 'all-donations',
+        //   element: <AllDonations />
+        // },
+        // {
+        //   path: 'all-pets',
+        //   element:<AllPets />
+        // }
 
     ]
   },

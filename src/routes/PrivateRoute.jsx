@@ -10,7 +10,7 @@ const PrivateRoute = ({children}) => {
             return <LoadingSpinner />
         }
         if (!user) {
-            return <Navigate state={{from: location.pathname}} to='/signing'></Navigate>
+            return <Navigate state={{from: location.pathname}} to='/signin'></Navigate>
         }
     return children
 };

@@ -26,7 +26,6 @@ const SignUpPage = () => {
     const { name, email, password } = data;
     const image = data.image[0];
     const photo = await imageUpload(image);
-    console.log(photo);
     try {
       await createUser(email, password);
       await updateUserProfile(name, photo);
@@ -53,22 +52,22 @@ const SignUpPage = () => {
   };
 
   return (
-      <div className="min-h-screen bg-gray-50 px-4 py-6 relative">
+      <div className="min-h-screen  px-4 py-6 relative">
 
       {/* Logo at top-left */}
       <Link
         to="/"
-        className="absolute top-6 left-6 flex items-center gap-2 text-lime-600 font-bold text-4xl"
+        className="absolute top-6 left-6 flex items-center gap-2 text-secondary font-bold text-4xl"
       >
         <FaPaw />
         <span>PetAdopt</span>
       </Link>
 
       {/* Main content */}
-      <div className="flex flex-col lg:flex-row items-center justify-center min-h-full gap-10 mt-16">
+      <div className="flex flex-col  lg:flex-row items-center justify-center min-h-full gap-10 mt-16">
         {/* Form Section */}
-        <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-          <h2 className="text-3xl font-bold text-center text-lime-600 mb-2">
+        <div className="w-full max-w-md backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8 border-2 border-secondary/15 shadow-lg rounded-xl p-8">
+          <h2 className="text-3xl font-bold text-center text-secondary mb-2">
             Create an Account
           </h2>
           <p className="text-center text-gray-500 mb-6">Register with Profast</p>
@@ -82,7 +81,7 @@ const SignUpPage = () => {
               <input
                 type="text"
                 {...register("name", { required: true })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                className="w-full border border-secondary/80 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary"
                 placeholder="Enter your name"
               />
               {errors.name && (
@@ -92,13 +91,13 @@ const SignUpPage = () => {
 
             {/* Photo */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block  text-sm font-medium text-gray-700 mb-1">
                 Photo
               </label>
               <input
                 type="file"
                 {...register("image", { required: true })}
-                className="w-full file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:bg-white file:text-gray-700"
+                className="w-full file:py-2 cursor-pointer file:px-4 file:border file:border-secondary/80 file:cursor-pointer  file:rounded-md file:bg-white file:text-gray-700"
               />
               {errors.image && (
                 <p className="text-sm text-red-500 mt-1">Image is required</p>
@@ -113,7 +112,7 @@ const SignUpPage = () => {
               <input
                 type="email"
                 {...register("email", { required: true })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                className="w-full border border-secondary/80 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary"
                 placeholder="Enter your email"
               />
               {errors.email && (
@@ -129,7 +128,7 @@ const SignUpPage = () => {
               <input
                 type="password"
                 {...register("password", { required: true, minLength: 6 })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                className="w-full border border-secondary/80 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary"
                 placeholder="Enter password"
               />
               {errors.password?.type === "required" && (
@@ -145,7 +144,7 @@ const SignUpPage = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
+              className="w-full bg-secondary cursor-pointer hover:bg-secondary/80 text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
             >
               {loading ? (
                 <TbFidgetSpinner className="animate-spin text-2xl" />
@@ -161,7 +160,7 @@ const SignUpPage = () => {
             <Link
               state={{ from }}
               to="/signin"
-              className="text-lime-600 font-medium hover:underline"
+              className="text-secondary font-medium hover:underline"
             >
               Sign In
             </Link>

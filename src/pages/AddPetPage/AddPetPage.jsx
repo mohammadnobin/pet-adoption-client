@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const categories = [
   { value: "Dog", label: "Dog" },
@@ -19,6 +20,9 @@ const AddPetPage = () => {
   const {user} = useAuth()
   const axiosSecure  = useAxiosSecure();
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [imagesubmite, setImagesubmite] = useState(false)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -28,9 +32,8 @@ const AddPetPage = () => {
   } = useForm();
 
   // 🔁 Mutation
-  const { mutate, isPending, isSuccess, isError, error } = useMutation({
+  const { mutate, isPending} = useMutation({
     mutationFn: async (petData) => {
-      // Optional: loading alert before actual request (shown only once)
       Swal.fire({
         title: "Uploading...",
         text: "Please wait while we add your pet.",
@@ -49,6 +52,10 @@ const AddPetPage = () => {
         title: "Pet Added!",
         text: "Your pet has been successfully added.",
       });
+      reset()
+      setUploadedImage(null);
+      setImagesubmite(false);
+      navigate('/dashboard/my-pets')
     },
     onError: (error) => {
       Swal.fire({
@@ -60,6 +67,8 @@ const AddPetPage = () => {
   });
 
   const onSubmit = async (data) => {
+    setImagesubmite(true);
+    if (!uploadedImage) return;
     const { age, shortDesc, location, name, longDesc, category } = data;
 
     const petInfo = {
@@ -141,7 +150,7 @@ const AddPetPage = () => {
               />
             )}
           </div>
-          {!uploadedImage && (
+          {imagesubmite && !uploadedImage && (
             <p className="text-sm text-red-500 mt-1">Image is required</p>
           )}
         </div>

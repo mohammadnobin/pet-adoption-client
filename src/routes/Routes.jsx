@@ -15,6 +15,8 @@ import CreateDonationPage from "../pages/CreateDonationPage/CreateDonationPage";
 import MyDonationPage from "../pages/MydonationPage/MyDonationPage";
 import MyDonationCampaignsPage from "../pages/MyDonationCampaignsPage/MyDonationCampaignsPage";
 import MyProfilePage from "../pages/MyProfilePage/MyProfilePage";
+import PetDetailsPage from "../pages/PetDetailsPage/PetDetailsPage";
+import DonationDetails from "../pages/DonationDetails/DonationDetails";
 
 export const router = createBrowserRouter([
   {
@@ -29,10 +31,18 @@ export const router = createBrowserRouter([
         path: "pets",
         element: <PetListPage />,
       },
-      {
-        path: "donations",
-        element: <Donationpage />,
-      },
+      // {
+      //   path: '/pet-details/:id',
+      //   element: <PetDetailsPage />
+      // },
+      // {
+      //   path: "donations",
+      //   element: <Donationpage />,
+      // },
+      // {
+      //   path: 'donationDetais/:id',
+      //   element: <DonationDetails />
+      // },
       {
         path: "forbidden",
         element: <Forbidden />,
@@ -71,14 +81,14 @@ export const router = createBrowserRouter([
           path:'adoption-requests',
           element:<AdoptionRequestPage />
         },
-        {
-          path:'create-campaign',
-          element:<CreateDonationPage />
-        },
-        {
-          path: 'my-campaigns',
-          element: <MyDonationCampaignsPage />
-        },
+        // {
+        //   path:'create-campaign',
+        //   element:<CreateDonationPage />
+        // },
+        // {
+        //   path: 'my-campaigns',
+        //   element: <MyDonationCampaignsPage />
+        // },
         {
           path:'my-donations',
           element: <MyDonationPage />

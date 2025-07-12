@@ -1,4 +1,4 @@
-import { useLocation, useNavigation } from "react-router";
+import { ScrollRestoration, useLocation, useNavigation } from "react-router";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -50,6 +50,7 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
+        <ScrollRestoration />
         {state === "loading" ? <LoadingSpinner /> : <Outlet />}
       </SidebarInset>
     </SidebarProvider>

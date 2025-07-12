@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useNavigation } from "react-router";
+import { Outlet, ScrollRestoration, useNavigation } from "react-router";
 import Navbar from "../components/Shared/Navbar/Navbar";
 import Footer from "../components/Shared/Footer/Footer";
 import LoadingSpinner from "../components/Shared/Loading/LoadingSpinner";
@@ -10,6 +10,7 @@ const MainLayouts = () => {
     <div>
       <Navbar />
       <div className=" mt-36">
+        <ScrollRestoration />
         {state === "loading" ? <LoadingSpinner /> : <Outlet />}
       </div>
       <Footer />

@@ -11,8 +11,6 @@ const MyAddedPets = () => {
 const {
   data: pets = [],
   isLoading,
-  isError,
-  refetch,
 } = useQuery({
   queryKey: ["myPets", user?.email], 
   queryFn: async () => {
@@ -25,7 +23,7 @@ const {
 console.log(pets);
     return (
         <div>
-            <PetsTable pets={pets} />
+            <PetsTable pets={pets} isLoading={isLoading} />
         </div>
     );
 };

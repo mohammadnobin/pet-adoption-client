@@ -2,13 +2,13 @@
 
 @import "tailwindcss";
 
+
+
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-nav.active {
-  @apply text-lime-600 font-semibold border-b-2 border-lime-600;
-}
+
 
 body{
   font-family: "Poppins", sans-serif;
@@ -125,7 +125,20 @@ body{
   * {
     @apply border-border outline-ring/50;
   }
+
+  @theme {
+  --color-secondary: #5046e5;
+  --color-white: white;
+  --color-black: rgb(60, 60, 60);
+  --color-bash: #fff;
+
+}
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+.active {
+  @apply text-bash text-base font-bold py-2 px-4 bg-secondary rounded-4xl;
 }

@@ -85,8 +85,8 @@ const AddPetPage = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-6">
-      <h2 className="text-3xl font-bold mb-6 text-center text-lime-600">
+    <div className="w-full max-w-4xl mx-auto p-6 backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8 border-2 border-secondary/15 shadow-lg rounded-xl mt-6">
+      <h2 className="text-3xl font-bold mb-6 text-center text-secondary">
         Add Your Pet
       </h2>
 
@@ -97,7 +97,7 @@ const AddPetPage = () => {
             <label className="block font-semibold mb-1">Pet Name</label>
             <input
               {...register("name", { required: "Name is required" })}
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded"
               placeholder="Enter pet name"
             />
             {errors.name && (
@@ -110,7 +110,7 @@ const AddPetPage = () => {
             <input
               type="number"
               {...register("age", { required: "Age is required" })}
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded"
               placeholder="Enter pet age"
             />
             {errors.age && (
@@ -122,7 +122,7 @@ const AddPetPage = () => {
         <div className="w-full">
           <label className="block font-semibold mb-2">Pet Image</label>
           <div className="border-4 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-between flex-wrap gap-4">
-            <label className="cursor-pointer bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700">
+            <label className="cursor-pointer bg-secondary text-white px-4 py-2 rounded hover:bg-white hover:text-secondary duration-200 border-2 hover:border-secondary">
               Upload
               <input
                 onChange={handleImageUpload}
@@ -171,7 +171,7 @@ const AddPetPage = () => {
             <label className="block font-semibold mb-1">Pet Location</label>
             <input
               {...register("location", { required: "Location is required" })}
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded"
               placeholder="Enter pickup location"
             />
             {errors.location && (
@@ -187,7 +187,7 @@ const AddPetPage = () => {
             {...register("shortDesc", {
               required: "Short description is required",
             })}
-            className="w-full border p-2 rounded"
+            className="w-full border-2 border-secondary/15 p-2 rounded"
             placeholder="Short note or description"
           />
           {errors.shortDesc && (
@@ -202,7 +202,7 @@ const AddPetPage = () => {
             {...register("longDesc", {
               required: "Long description is required",
             })}
-            className="w-full border p-2 rounded"
+            className="w-full border-2 border-secondary/15 p-2 rounded"
             rows={5}
             placeholder="Detailed information about the pet"
           />
@@ -210,18 +210,9 @@ const AddPetPage = () => {
             <p className="text-red-500 text-sm">{errors.longDesc.message}</p>
           )}
         </div>
-
-        {/* Submit Button */}
-        {/* <button
-          type="submit"
-          className="bg-lime-600 hover:bg-lime-700 text-white font-semibold py-3 px-6 rounded w-full"
-        >
-          {isPending }
-          Submit Pet
-        </button> */}
         <button
           type="submit"
-          className="bg-lime-600 hover:bg-lime-700 text-white font-semibold py-3 px-6 rounded w-full"
+          className="cursor-pointer bg-secondary text-white w-full py-3 rounded hover:bg-white hover:text-secondary duration-200 border-2 hover:border-secondary"
           disabled={isPending}
         >
           {isPending ? "Submitting..." : "Submit Pet"}

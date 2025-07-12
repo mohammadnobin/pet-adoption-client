@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import {Link, NavLink } from "react-router";
 import { AiOutlineMenu } from 'react-icons/ai'
 import {
   FaPaw,
@@ -35,67 +35,69 @@ const Navbar = () => {
     logOut();
   };
 
+
+
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md border-b-2 px-4 py-3">
+    <nav className="fixed top-0 text-base text-black font-bold left-0 w-full z-50 backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8 border-b-2 border-secondary/15 px-4 py-3">
       <Container>
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-lime-600 font-bold text-2xl"
+            className="flex items-center gap-2 text-secondary font-bold text-2xl"
           >
             <FaPaw />
             <span>PetAdopt</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6 text-gray-700 items-center">
-            <Link
+          <div className="hidden lg:flex gap-6 text-gray-700 items-center">
+            <NavLink
               to="/"
-              className="flex items-center gap-1 hover:text-lime-600"
+              className="flex items-center gap-1 hover:text-secondary"
             >
               <FaHome /> Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/pets"
-              className="flex items-center gap-1 hover:text-lime-600"
+              className="flex items-center gap-1 hover:text-secondary"
             >
               <FaDog /> Pet Listing
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/donations"
-              className="flex items-center gap-1 hover:text-lime-600"
+              className="flex items-center gap-1 hover:text-secondary"
             >
               <FaDonate /> Donation Campaigns
-            </Link>
+            </NavLink>
           </div>
           <div className="hidden md:flex gap-6 text-gray-700 items-center">
             {!user && (
               <>
-                <Link
+                <NavLink
                   to="/signin"
-                  className="flex items-center gap-1 hover:text-lime-600"
+                  className="flex items-center gap-1 hover:text-secondary"
                 >
                   <FaSignInAlt /> Login
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/signup"
-                  className="flex items-center gap-1 hover:text-lime-600"
+                  className="flex items-center gap-1 hover:text-secondary"
                 >
                   <FaUserPlus /> Register
-                </Link>
+                </NavLink>
               </>
             )}
 
             {user && (
               <div className="relative">
-       <div className='flex flex-row items-center gap-3'>
+       <div className='flex flex-row items-center gap-3 '>
                 {/* Dropdown btn */}
                 <div
                   onClick={toggleDropdown}
-                  className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+                  className='p-4 md:py-1 md:px-2 border-2 border-secondary/50 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
                 >
-                  <AiOutlineMenu />
+                  <AiOutlineMenu className="text-secondary" />
                   <div className='hidden md:block'>
                     {/* Avatar */}
                     <img
@@ -111,16 +113,16 @@ const Navbar = () => {
               </div>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
-                    <Link
+                  <div className="absolute right-0 mt-2 w-40 bg-gradient-to-t from-secondary/ via-bash to-secondary/8 border-2 border-secondary/15  rounded-lg shadow-lg z-50">
+                    <NavLink
                       to="/dashboard"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 text-sm text-gray-700"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-gray-700"
                     >
                       <FaTachometerAlt /> Dashboard
-                    </Link>
+                    </NavLink>
                     <button
                       onClick={handleLogOut}
-                      className="flex cursor-pointer items-center gap-2 w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-500"
+                      className="flex cursor-pointer items-center gap-2 w-full text-left px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-red-500"
                     >
                       <FaSignOutAlt /> Logout
                     </button>
@@ -131,8 +133,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu}>
+          <div className="lg:hidden">
+            <button className="text-secondary" onClick={toggleMenu}>
               {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
           </div>
@@ -141,57 +143,57 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden mt-4 flex flex-col gap-4 text-gray-700">
-          <Link
+        <div className="lg:hidden mt-4 flex flex-col gap-4 text-gray-700">
+          <NavLink
             to="/"
             onClick={closeMenu}
-            className="flex items-center gap-2 hover:text-lime-600"
+            className="flex items-center gap-2 hover:text-secondary"
           >
             <FaHome /> Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/pets"
             onClick={closeMenu}
-            className="flex items-center gap-2 hover:text-lime-600"
+            className="flex items-center gap-2 hover:text-secondary"
           >
             <FaDog /> Pet Listing
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/donations"
             onClick={closeMenu}
-            className="flex items-center gap-2 hover:text-lime-600"
+            className="flex items-center gap-2 hover:text-secondary"
           >
             <FaDonate /> Donation Campaigns
-          </Link>
+          </NavLink>
 
           {!user && (
             <>
-              <Link
+              <NavLink
                 to="/signin"
                 onClick={closeMenu}
-                className="flex items-center gap-2 hover:text-lime-600"
+                className="flex items-center gap-2 hover:text-secondary"
               >
                 <FaSignInAlt /> Login
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/signup"
                 onClick={closeMenu}
-                className="flex items-center gap-2 hover:text-lime-600"
+                className="flex items-center gap-2 hover:text-secondary"
               >
                 <FaUserPlus /> Register
-              </Link>
+              </NavLink>
             </>
           )}
 
           {user && (
             <>
-              <Link
+              <NavLink
                 to="/dashboard"
                 onClick={closeMenu}
-                className="flex items-center gap-2 hover:text-lime-600"
+                className="flex items-center gap-2 hover:text-secondary"
               >
                 <FaTachometerAlt /> Dashboard
-              </Link>
+              </NavLink>
               <button
                 onClick={() => {
                   closeMenu();

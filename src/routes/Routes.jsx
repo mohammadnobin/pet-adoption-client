@@ -82,10 +82,10 @@ export const router = createBrowserRouter([
           path:'my-pets',
           element:<MyAddedPets />
         },
-        // {
-        //   path: 'pet-update/:id',
-        //   element: <UpDatePetPage />
-        // },
+        {
+          path: 'pet-update/:id',
+          element: <UpDatePetPage />
+        },
         {
           path:'adoption-requests',
           element:<AdoptionRequestPage />

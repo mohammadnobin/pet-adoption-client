@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const PetsTable = ({ pets = [], isLoading }) => {
+const PetsTable = ({ pets = [], isLoading,onDelete }) => {
   const navigate = useNavigate();
   const location = useLocation();
   // pet update by admin
@@ -13,7 +13,6 @@ const PetsTable = ({ pets = [], isLoading }) => {
       state: { from: location.pathname },
     });
   };
-  const onDelete = () => {};
   return (
     <div className="xl:w-7xl w-full mx-auto p-4">
       {/* Large screen: Table View */}

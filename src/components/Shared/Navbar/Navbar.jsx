@@ -1,6 +1,7 @@
 import { useState } from "react";
-import {Link, NavLink } from "react-router";
-import { AiOutlineMenu } from 'react-icons/ai'
+import { Link, NavLink } from "react-router";
+import { AiOutlineMenu } from "react-icons/ai";
+import Skeleton from "react-loading-skeleton";
 import {
   FaPaw,
   FaBars,
@@ -17,7 +18,7 @@ import useAuth from "../../../hooks/useAuth";
 import Container from "../Container";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, loading, logOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -34,8 +35,6 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut();
   };
-
-
 
   return (
     <nav className="fixed top-0 text-base text-black font-bold left-0 w-full z-50 backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8 border-b-2 border-secondary/15 px-4 py-3">
@@ -72,63 +71,74 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="hidden md:flex gap-6 text-gray-700 items-center">
-            {!user && (
-              <>
-                <NavLink
-                  to="/signin"
-                  className="flex items-center gap-1 px-4 py-2 rounded-4xl bg-secondary text-white hover:bg-white hover:border-secondary border-2 duration-300 hover:text-secondary"
-                >
-                  <FaSignInAlt /> Login
-                </NavLink>
-                {/* <NavLink
-                  to="/signup"
-                  className="flex items-center gap-1 hover:text-secondary"
-                >
-                  <FaUserPlus /> Register
-                </NavLink> */}
-              </>
-            )}
+            {loading ? (
+              <div className="flex flex-row items-center gap-3">
+                {/* Dropdown Skeleton btn */}
+                <div className="p-4 md:py-1 md:px-2 border-2 border-secondary/50 flex flex-row items-center gap-3 rounded-full">
+                  {/* Menu icon skeleton */}
+                  <Skeleton circle width={20} height={20} />
 
-            {user && (
-              <div className="relative">
-       <div className='flex flex-row items-center gap-3 '>
-                {/* Dropdown btn */}
-                <div
-                  onClick={toggleDropdown}
-                  className='p-4 md:py-1 md:px-2 border-2 border-secondary/50 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
-                >
-                  <AiOutlineMenu className="text-secondary" />
-                  <div className='hidden md:block'>
-                    {/* Avatar */}
-                    <img
-                      className='rounded-full'
-                      referrerPolicy='no-referrer'
-                      src={user && user.photoURL }
-                      alt='profile'
-                      height='30'
-                      width='30'
-                    />
+                  {/* Avatar skeleton (md screen only) */}
+                  <div className="hidden md:block">
+                    <Skeleton circle width={30} height={30} />
                   </div>
                 </div>
               </div>
-
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-gradient-to-t from-secondary/ via-bash to-secondary/8 border-2 border-secondary/15  rounded-lg shadow-lg z-50">
+            ) : (
+              <>
+                {!user && (
+                  <>
                     <NavLink
-                      to="/dashboard"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-gray-700"
+                      to="/signin"
+                      className="flex items-center gap-1 px-4 py-2 rounded-4xl bg-secondary text-white hover:bg-white hover:border-secondary border-2 duration-300 hover:text-secondary"
                     >
-                      <FaTachometerAlt /> Dashboard
+                      <FaSignInAlt /> Sign In
                     </NavLink>
-                    <button
-                      onClick={handleLogOut}
-                      className="flex cursor-pointer items-center gap-2 w-full text-left px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-red-500"
-                    >
-                      <FaSignOutAlt /> Logout
-                    </button>
+                  </>
+                )}
+
+                {user && (
+                  <div className="relative">
+                    <div className="flex flex-row items-center gap-3 ">
+                      {/* Dropdown btn */}
+                      <div
+                        onClick={toggleDropdown}
+                        className="p-4 md:py-1 md:px-2 border-2 border-secondary/50 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+                      >
+                        <AiOutlineMenu className="text-secondary" />
+                        <div className="hidden md:block">
+                          {/* Avatar */}
+                          <img
+                            className="rounded-full"
+                            referrerPolicy="no-referrer"
+                            src={user && user.photoURL}
+                            alt="profile"
+                            height="30"
+                            width="30"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {dropdownOpen && (
+                      <div className="absolute right-0 mt-2 w-40 bg-gradient-to-t from-secondary/ via-bash to-secondary/8 border-2 border-secondary/15  rounded-lg shadow-lg z-50">
+                        <NavLink
+                          to="/dashboard"
+                          className="flex items-center gap-2 px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-gray-700"
+                        >
+                          <FaTachometerAlt /> Dashboard
+                        </NavLink>
+                        <button
+                          onClick={handleLogOut}
+                          className="flex cursor-pointer items-center gap-2 w-full text-left px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-red-500"
+                        >
+                          <FaSignOutAlt /> Logout
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
-              </div>
+              </>
             )}
           </div>
 

@@ -32,13 +32,14 @@
 
 import React, { useEffect } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Title from "../../components/Shared/Title/Title";
 import PetsTable from "../../components/MyaddedPets/PetsTable";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const LIMIT = 3;
 
@@ -48,7 +49,7 @@ const MyAddedPets = () => {
 
   const { ref, inView } = useInView();
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, refetch, isLoading } =
     useInfiniteQuery({
       queryKey: ["myPets", user?.email],
       queryFn: async ({ pageParam = 1 }) => {
@@ -72,12 +73,62 @@ const MyAddedPets = () => {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+
+
+  // ✅ Delete Pet Mutation
+    const deleteMutation = useMutation({
+      mutationFn: async (id) => {
+        const res = await axiosSecure.delete(`/pets/${id}`);
+        return res.data;
+      },
+      onSuccess: () => {
+        Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: "Pet deleted successfully.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        refetch()
+      },
+      onError: () => {
+        Swal.fire({
+          icon: "error",
+          title: "Failed!",
+          text: "Something went wrong. Could not delete the pet.",
+          confirmButtonColor: "#d33",
+        });
+      },
+    });
+  
+    // ✅ SweetAlert Delete Handler
+    const onDelete = (pet) => {
+      Swal.fire({
+        title: `Are you sure?`,
+        text: `You are about to delete "${pet.petName}". This action cannot be undone.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteMutation.mutate(pet._id);
+        }
+      });
+    };
+
+
+
+
+
+
   const pets = data?.pages.flat() || [];
 
   return (
     <div className="xl:w-[80%] mx-auto">
       <Title titels="All" titese="Pets" />
-      <PetsTable pets={pets} isLoading={isLoading} />
+      <PetsTable onDelete={onDelete} pets={pets} isLoading={isLoading} />
       <div className="w-[95%] mx-auto ">
         <table ref={ref} className="min-w-full divide-y divide-gray-200">
           <tbody className="bg-white divide-y divide-gray-200">
@@ -102,7 +153,10 @@ const MyAddedPets = () => {
                 </tr>
               ))
             ) : !hasNextPage && pets.length > 0 ? (
-              <p className="text-gray-500 italic">You have seen all pets.</p>
+              <tr>
+                <td className="text-gray-500 italic">You have seen all pets.</td>
+
+              </tr>
             ) : null}
           </tbody>
         </table>

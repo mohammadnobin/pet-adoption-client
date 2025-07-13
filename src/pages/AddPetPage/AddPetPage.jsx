@@ -85,7 +85,6 @@ const AddPetPage = () => {
     };
 
     mutate(petInfo);
-    console.log(petInfo);
   };
   const handleImageUpload = async (e) => {
     const image = e.target.files[0];

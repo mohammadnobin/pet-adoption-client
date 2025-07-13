@@ -76,16 +76,16 @@ const Navbar = () => {
               <>
                 <NavLink
                   to="/signin"
-                  className="flex items-center gap-1 hover:text-secondary"
+                  className="flex items-center gap-1 px-4 py-2 rounded-4xl bg-secondary text-white hover:bg-white hover:border-secondary border-2 duration-300 hover:text-secondary"
                 >
                   <FaSignInAlt /> Login
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/signup"
                   className="flex items-center gap-1 hover:text-secondary"
                 >
                   <FaUserPlus /> Register
-                </NavLink>
+                </NavLink> */}
               </>
             )}
 

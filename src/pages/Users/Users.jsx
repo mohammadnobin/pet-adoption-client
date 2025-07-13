@@ -54,7 +54,7 @@ const Users = () => {
     };
 
   return (
-    <div className="w-[80%] mx-auto">
+    <div className="xl:w-[80%] mx-auto">
       <h2 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6 text-gray-800">Make Admin</h2>
 
       <div className="flex items-center gap-3 mb-6">
@@ -83,7 +83,7 @@ const Users = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {[...Array(5)].map((_, idx) => (
+                {[...Array(9)].map((_, idx) => (
                   <tr key={idx}>
                     {[...Array(6)].map((__, i) => (
                       <td key={i} className="px-6 py-4 whitespace-nowrap"><Skeleton width={100} /></td>

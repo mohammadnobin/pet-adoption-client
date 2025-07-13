@@ -1,11 +1,13 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import coverImg from '../../assets/profilecover.png'
+import useUserRole from '../../hooks/useUserRole';
 
 const MyProfilePage = () => {
     const {user} = useAuth()
+    const {role} = useUserRole()
     return (
-<div className='flex justify-center items-center h-screen'>
+<div className='flex justify-center items-center h-screen -mt-32'>
       <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
         <img
           alt='cover photo'
@@ -21,8 +23,8 @@ const MyProfilePage = () => {
             />
           </a>
 
-          <p className='p-2 px-4 text-xs text-white bg-secondary  rounded-full'>
-            Customer
+          <p className='p-2 px-4 text-xs capitalize text-white bg-secondary  rounded-full'>
+            {role}
           </p>
           <p className='mt-2 text-xl font-medium text-gray-800 '>
             User Id: {user.uid}

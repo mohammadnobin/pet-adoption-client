@@ -4,16 +4,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Container from "../../components/Shared/Container";
 import Title from "../../components/Shared/Title/Title";
+import Payment from "../Payment/Payment";
 
 const DonationDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const [showModal, setShowModal] = useState(false);
   const [amount, setAmount] = useState("");
-  console.log(amount);
 
   // Get donation details
-  const { data: donation, isLoading } = useQuery({
+  const { data: donation, isLoading,refetch  } = useQuery({
     queryKey: ["donation", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/donations/${id}`);
@@ -22,7 +22,7 @@ const DonationDetails = () => {
   });
 
   // Get recommended donations
-  const { data: recommended = [] } = useQuery({
+  const { data: recommended = []} = useQuery({
     queryKey: ["recommendedDonations"],
     queryFn: async () => {
       const res = await axiosSecure.get("/donationsrecommended");
@@ -31,15 +31,6 @@ const DonationDetails = () => {
   });
 
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
-
-  const handleDonate = (e) => {
-    e.preventDefault();
-    // Normally you would post this to the server
-    console.log(`Donated $${amount} to donation ID ${donation._id}`);
-    alert(`Thank you for your $${amount} donation!`);
-    setShowModal(false);
-    setAmount("");
-  };
 
   return (
     <Container>
@@ -64,13 +55,11 @@ const DonationDetails = () => {
         </p>
 
         <button
-          className="bg-secondary text-white px-6 py-2 rounded"
+          className="bg-secondary cursor-pointer text-white px-6 py-2 rounded"
           onClick={() => setShowModal(true)}
         >
           Donate Now
         </button>
-
-        {/* Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg max-w-md w-full relative">
@@ -83,22 +72,23 @@ const DonationDetails = () => {
               <h3 className="text-xl font-semibold mb-4">
                 Donate to: {donation.shortDescription}
               </h3>
-              <form onSubmit={handleDonate} className="space-y-4">
-                <input
-                  type="number"
-                  placeholder="Enter donation amount"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="w-full border px-4 py-2 rounded"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="bg-secondary text-white px-4 py-2 rounded w-full"
-                >
-                  Donate Now
-                </button>
-              </form>
+
+              {/* ইনপুট ও পেমেন্ট */}
+              <input
+                type="number"
+                placeholder="Enter donation amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="w-full border px-4 py-2 rounded mb-4"
+                required
+              />
+
+              {/* Stripe Payment Component */}
+              {amount && Number(amount) > 0 ? (
+                <Payment refetch={refetch} setShowModal={setShowModal} donationData={donation} amount={Number(amount)} />
+              ) : (
+                <p className="text-sm text-red-500">Enter valid amount</p>
+              )}
             </div>
           </div>
         )}
@@ -141,5 +131,3 @@ const DonationDetails = () => {
 };
 
 export default DonationDetails;
-
-

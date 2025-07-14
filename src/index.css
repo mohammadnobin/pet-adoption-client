@@ -142,3 +142,23 @@ body{
 .active {
   @apply text-bash text-base font-bold py-2 px-4 bg-secondary rounded-4xl;
 }
+
+
+
+.wrapper {
+  border: 3px solid blue;
+}
+
+.container {
+  background-color: pink;
+}
+
+.barCompleted {
+  background-color: lightblue;
+  width: 80%;
+}
+
+.label {
+  font-size: 20px;
+  color: green;
+}

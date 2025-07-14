@@ -105,7 +105,7 @@ const DonationPage = () => {
                   </p>
                   <p className="mb-3">
                     <span className="font-semibold">Donated Amount: </span>$
-                    {donation.donatedAmount?.toFixed(2) || "0.00"}
+                    {donation.collectedAmount?.toFixed(2) || "0.00"}
                   </p>
                   <Link to={`/donationDetais/${donation._id}`}>
                   <button

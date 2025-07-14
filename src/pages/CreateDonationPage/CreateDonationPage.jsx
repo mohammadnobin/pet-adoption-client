@@ -1,209 +1,23 @@
-// import React, { useState } from "react";
-// import { useForm } from "react-hook-form";
-// import { useMutation } from "@tanstack/react-query";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import { imageUpload } from "../../api/utils";
-// import useAuth from "../../hooks/useAuth";
-// import Swal from "sweetalert2";
-
-// const CreateDonationPage = () => {
-//   const { user } = useAuth();
-//   const {
-//     register,
-//     handleSubmit,
-//     reset,
-//     formState: { errors },
-//   } = useForm();
-//   const axiosSecure = useAxiosSecure();
-//   const [uploading, setUploading] = useState(false);
-
-//   const { mutateAsync: createDonation, isPending } = useMutation({
-//     mutationFn: async (data) => {
-//       const res = await axiosSecure.post("/donations", data);
-//       return res.data;
-//     },
-//     onSuccess: () => {
-//       Swal.fire({
-//         icon: "success",
-//         title: "Success!",
-//         text: "Donation campaign created successfully.",
-//       });
-//       reset();
-//     },
-//     onError: (err) => {
-//       console.error(err);
-//       Swal.fire({
-//         icon: "error",
-//         title: "Error!",
-//         text: "Failed to create donation campaign.",
-//       });
-//     },
-//   });
-
-//   const onSubmit = async (data) => {
-//     try {
-//       setUploading(true);
-//       const imageURL = await imageUpload(data.petImage[0]);
-
-// const donationData = {
-//   petImage: imageURL,
-//   maxDonation: parseFloat(data.maxDonation),
-//   lastDate: data.lastDate,
-//   shortDescription: data.shortDescription,
-//   longDescription: data.longDescription,
-//   createdAt: new Date().toISOString(),
-//   status: "notDonate",
-//   campaignOwnerName: user?.displayName || "Anonymous",
-//   campaignOwnerEmail: user?.email || "No Email",
-// };
-
-
-//       await createDonation(donationData);
-//     } catch (error) {
-//       console.error(error);
-//       Swal.fire({
-//         icon: "error",
-//         title: "Oops...",
-//         text: "Something went wrong while uploading!",
-//       });
-//     } finally {
-//       setUploading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="max-w-3xl mx-auto px-4 py-10">
-//       <h2 className="text-3xl font-bold text-center text-secondary mb-8">
-//         Create Donation Campaign
-//       </h2>
-
-//       <form
-//         onSubmit={handleSubmit(onSubmit)}
-//         className="bg-white p-6 rounded-lg shadow-md space-y-4 border"
-//       >
-//         {/* Pet Image */}
-//         <div>
-//           <label className="block text-sm font-medium mb-1">Pet Picture</label>
-//           <input
-//             type="file"
-//             accept="image/*"
-//             {...register("petImage", { required: "Pet image is required" })}
-//             className="w-full border border-gray-300 rounded px-3 py-2"
-//           />
-//           {errors.petImage && (
-//             <p className="text-red-500 text-sm">{errors.petImage.message}</p>
-//           )}
-//         </div>
-
-//         {/* Max Donation */}
-//         <div>
-//           <label className="block text-sm font-medium mb-1">
-//             Maximum Donation Amount
-//           </label>
-//           <input
-//             type="number"
-//             step="0.01"
-//             {...register("maxDonation", { required: "Amount is required" })}
-//             className="w-full border border-gray-300 rounded px-3 py-2"
-//           />
-//           {errors.maxDonation && (
-//             <p className="text-red-500 text-sm">{errors.maxDonation.message}</p>
-//           )}
-//         </div>
-
-//         {/* Last Date */}
-//         <div>
-//           <label className="block text-sm font-medium mb-1">
-//             Last Date of Donation
-//           </label>
-//           <input
-//             type="date"
-//             {...register("lastDate", { required: "Last date is required" })}
-//             className="w-full border border-gray-300 rounded px-3 py-2"
-//           />
-//           {errors.lastDate && (
-//             <p className="text-red-500 text-sm">{errors.lastDate.message}</p>
-//           )}
-//         </div>
-
-//         {/* Short Description */}
-//         <div>
-//           <label className="block text-sm font-medium mb-1">
-//             Short Description
-//           </label>
-//           <input
-//             type="text"
-//             {...register("shortDescription", {
-//               required: "Short description is required",
-//             })}
-//             className="w-full border border-gray-300 rounded px-3 py-2"
-//           />
-//           {errors.shortDescription && (
-//             <p className="text-red-500 text-sm">
-//               {errors.shortDescription.message}
-//             </p>
-//           )}
-//         </div>
-
-//         {/* Long Description */}
-//         <div>
-//           <label className="block text-sm font-medium mb-1">
-//             Long Description
-//           </label>
-//           <textarea
-//             rows={5}
-//             {...register("longDescription", {
-//               required: "Long description is required",
-//             })}
-//             className="w-full border border-gray-300 rounded px-3 py-2"
-//           ></textarea>
-//           {errors.longDescription && (
-//             <p className="text-red-500 text-sm">
-//               {errors.longDescription.message}
-//             </p>
-//           )}
-//         </div>
-
-//         {/* Submit */}
-//         <button
-//           type="submit"
-//           disabled={uploading || isPending}
-//           className="w-full bg-secondary text-white py-2 rounded hover:bg-secondary/90 transition"
-//         >
-//           {uploading || isPending
-//             ? "Submitting..."
-//             : "Submit Donation Campaign"}
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default CreateDonationPage;
-
-
-
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { imageUpload } from "../../api/utils";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import TiptapEditor from "../../components/Shared/LongDiscription/TiptapEditor";
-
+import Title from "../../components/Shared/Title/Title";
 
 const CreateDonationPage = () => {
   const { user } = useAuth();
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [imagesubmite, setImagesubmite] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
-    control,
     formState: { errors },
   } = useForm();
   const axiosSecure = useAxiosSecure();
-  const [uploading, setUploading] = useState(false);
 
   const { mutateAsync: createDonation, isPending } = useMutation({
     mutationFn: async (data) => {
@@ -217,6 +31,8 @@ const CreateDonationPage = () => {
         text: "Donation campaign created successfully.",
       });
       reset();
+      setUploadedImage(null);
+      setImagesubmite(false);
     },
     onError: (err) => {
       console.error(err);
@@ -229,22 +45,23 @@ const CreateDonationPage = () => {
   });
 
   const onSubmit = async (data) => {
+    const { longDesc, name, pickupDate, shortDesc,amount } = data;
+    setImagesubmite(true);
+    if (!uploadedImage) return;
     try {
-      setUploading(true);
-      const imageURL = await imageUpload(data.petImage[0]);
-
       const donationData = {
-        petImage: imageURL,
-        maxDonation: parseFloat(data.maxDonation),
-        lastDate: data.lastDate,
-        shortDescription: data.shortDescription,
-        longDescription: data.longDescription,
+        petName:name,
+        petImage: uploadedImage,
+        maxDonation: parseFloat(amount),
+        lastDate: pickupDate,
+        shortDescription: shortDesc,
+        longDescription: longDesc,
         createdAt: new Date().toISOString(),
         status: "notDonate",
+        Pause: "unpaused",
         campaignOwnerName: user?.displayName || "Anonymous",
         campaignOwnerEmail: user?.email || "No Email",
       };
-
       await createDonation(donationData);
     } catch (error) {
       console.error(error);
@@ -254,117 +71,146 @@ const CreateDonationPage = () => {
         text: "Something went wrong while uploading!",
       });
     } finally {
-      setUploading(false);
     }
   };
 
+  const handleImageUpload = async (e) => {
+    const image = e.target.files[0];
+    const res = await imageUpload(image);
+    setUploadedImage(res);
+  };
+
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-center text-secondary mb-8">
-        Create Donation Campaign
-      </h2>
+    <>
+      <Title titels="Added" titese="Pets" />
+      <div className="w-full max-w-4xl mx-auto p-6 backdrop-blur bg-gradient-to-t -mt-8 from-secondary/8 via-bash to-secondary/8 border-2 border-secondary/15 shadow-lg rounded-xl">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Pet Name & Age */}
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-6 rounded-lg shadow-md space-y-4 border"
-      >
-        {/* Pet Image */}
-        <div>
-          <label className="block text-sm font-medium mb-1">Pet Picture</label>
-          <input
-            type="file"
-            accept="image/*"
-            {...register("petImage", { required: "Pet image is required" })}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-          {errors.petImage && (
-            <p className="text-red-500 text-sm">{errors.petImage.message}</p>
-          )}
-        </div>
-
-        {/* Max Donation */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Maximum Donation Amount
-          </label>
-          <input
-            type="number"
-            step="0.01"
-            {...register("maxDonation", { required: "Amount is required" })}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-          {errors.maxDonation && (
-            <p className="text-red-500 text-sm">{errors.maxDonation.message}</p>
-          )}
-        </div>
-
-        {/* Last Date */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Last Date of Donation
-          </label>
-          <input
-            type="date"
-            {...register("lastDate", { required: "Last date is required" })}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-          {errors.lastDate && (
-            <p className="text-red-500 text-sm">{errors.lastDate.message}</p>
-          )}
-        </div>
-
-        {/* Short Description */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Short Description
-          </label>
-          <input
-            type="text"
-            {...register("shortDescription", {
-              required: "Short description is required",
-            })}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-          {errors.shortDescription && (
-            <p className="text-red-500 text-sm">
-              {errors.shortDescription.message}
-            </p>
-          )}
-        </div>
-
-        {/* Long Description using TiptapEditor */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Long Description
-          </label>
-          <Controller
-            name="longDescription"
-            control={control}
-            defaultValue=""
-            rules={{ required: "Long description is required" }}
-            render={({ field }) => (
-              <TiptapEditor value={field.value} onChange={field.onChange} />
+          <div>
+            <label className="block font-semibold mb-1">Pet Name</label>
+            <input
+              {...register("name", { required: "Name is required" })}
+              className="w-full border-2 border-secondary/15 p-2 rounded"
+              placeholder="Enter pet name"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
             )}
-          />
-          {errors.longDescription && (
-            <p className="text-red-500 text-sm">
-              {errors.longDescription.message}
-            </p>
-          )}
-        </div>
+          </div>
+          {/* Image Upload */}
+          <div className="w-full">
+            <label className="block font-semibold mb-2">Pet Image</label>
+            <div className="border-4 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-between flex-wrap gap-4">
+              <label className="cursor-pointer bg-secondary text-white px-4 py-2 rounded hover:bg-white hover:text-secondary duration-200 border-2 hover:border-secondary">
+                Upload
+                <input
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  type="file"
+                  name="image"
+                  id="image"
+                  accept="image/*"
+                />
+              </label>
+              {uploadedImage && (
+                <img
+                  className="w-[100px] h-[100px] object-cover rounded"
+                  src={uploadedImage}
+                  alt="pet"
+                />
+              )}
+            </div>
+            {imagesubmite && !uploadedImage && (
+              <p className="text-sm text-red-500 mt-1">Image is required</p>
+            )}
+          </div>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={uploading || isPending}
-          className="w-full bg-secondary text-white py-2 rounded hover:bg-secondary/90 transition"
-        >
-          {uploading || isPending
-            ? "Submitting..."
-            : "Submit Donation Campaign"}
-        </button>
-      </form>
-    </div>
+          {/* date and admount */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Amount Field */}
+            <div>
+              <label className="block font-semibold mb-1">
+                Donation Amount
+              </label>
+              <input
+                type="number"
+                step="0.01"
+                min="1"
+                {...register("amount", {
+                  required: "Amount is required",
+                  min: {
+                    value: 1,
+                    message: "Minimum amount must be 1",
+                  },
+                })}
+                className="w-full border-2 border-secondary/15 p-2 rounded"
+                placeholder="Enter amount"
+              />
+              {errors.amount && (
+                <p className="text-red-500 text-sm">{errors.amount.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block font-semibold mb-1">Pickup Date</label>
+              <input
+                type="date"
+                {...register("pickupDate", {
+                  required: "Pickup date is required",
+                })}
+                className="w-full border-2 border-secondary/15 p-2 rounded"
+              />
+              {errors.pickupDate && (
+                <p className="text-red-500 text-sm">
+                  {errors.pickupDate.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Short Description */}
+          <div>
+            <label className="block font-semibold mb-1">
+              Short Description
+            </label>
+            <input
+              {...register("shortDesc", {
+                required: "Short description is required",
+              })}
+              className="w-full border-2 border-secondary/15 p-2 rounded"
+              placeholder="Short note or description"
+            />
+            {errors.shortDesc && (
+              <p className="text-red-500 text-sm">{errors.shortDesc.message}</p>
+            )}
+          </div>
+
+          {/* Long Description */}
+          <div>
+            <label className="block font-semibold mb-1">Long Description</label>
+            <textarea
+              {...register("longDesc", {
+                required: "Long description is required",
+              })}
+              className="w-full border-2 border-secondary/15 p-2 rounded"
+              rows={5}
+              placeholder="Detailed information about the pet"
+            />
+            {errors.longDesc && (
+              <p className="text-red-500 text-sm">{errors.longDesc.message}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="cursor-pointer bg-secondary text-white w-full py-3 rounded hover:bg-white hover:text-secondary duration-200 border-2 hover:border-secondary"
+            disabled={isPending}
+          >
+            {isPending ? "Submitting..." : "Submit Pet"}
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -60,7 +60,7 @@ const AllPets = () => {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
   // pet update by admin
   const onUpdate = (pet) => {
-    navigate(`/dashboard/pet-update/${pet._id}`, {
+    navigate(`/dashboard/pets-admin-update/${pet._id}`, {
       state: { from: location.pathname },
     });
   };
@@ -68,7 +68,7 @@ const AllPets = () => {
   // ✅ Delete Pet Mutation
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
-      const res = await axiosSecure.delete(`/pets/${id}`);
+      const res = await axiosSecure.delete(`/pet-delete-admin/${id}`);
       return res.data;
     },
     onSuccess: () => {

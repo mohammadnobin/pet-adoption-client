@@ -58,7 +58,7 @@ const CreateDonationPage = () => {
         longDescription: longDesc,
         createdAt: new Date().toISOString(),
         status: "notDonate",
-        Pause: "unpaused",
+        pause: "resume",
         campaignOwnerName: user?.displayName || "Anonymous",
         campaignOwnerEmail: user?.email || "No Email",
       };
@@ -70,7 +70,6 @@ const CreateDonationPage = () => {
         title: "Oops...",
         text: "Something went wrong while uploading!",
       });
-    } finally {
     }
   };
 

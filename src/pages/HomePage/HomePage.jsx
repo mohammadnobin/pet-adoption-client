@@ -3,7 +3,8 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='py-96'>
+      sdfsdfdsf
     </div>
   );
 };

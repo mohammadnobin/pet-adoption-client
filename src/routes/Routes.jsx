@@ -22,6 +22,8 @@ import Users from "../pages/Users/Users";
 import AllDonations from "../pages/AllDonations/AllDonations";
 import AllPets from "../pages/AllPets/AllPets";
 import UpDatePetPage from "../pages/UpDatePetpage/UpDatePetPage";
+import UpdatePetPageUser from "../pages/UpdatePetPageUser/UpdatePetPageUser";
+import DonationsEditePage from "../pages/DonationsEdit/DonationsEditePage";
 
 export const router = createBrowserRouter([
   {
@@ -84,7 +86,7 @@ export const router = createBrowserRouter([
         },
         {
           path: 'pet-update/:id',
-          element: <UpDatePetPage />
+          element: <UpdatePetPageUser />
         },
         {
           path:'adoption-requests',
@@ -92,8 +94,11 @@ export const router = createBrowserRouter([
         },
         {
           path:'create-campaign',
-          // element:<AdminRoute><CreateDonationPage /></AdminRoute> 
           element: <CreateDonationPage />
+        },
+        {
+          path: 'donationsedit/:id',
+          element: <DonationsEditePage />
         },
         {
           path: 'my-campaigns',
@@ -118,6 +123,10 @@ export const router = createBrowserRouter([
         {
           path: 'all-pets',
           element:<AdminRoute><AllPets /></AdminRoute> 
+        },
+        {
+          path: 'pets-admin-update/:id',
+          element: <AdminRoute><UpDatePetPage /></AdminRoute>
         }
 
     ]

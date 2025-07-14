@@ -300,7 +300,7 @@ const UpdatePetPage = () => {
   // ✅ Mutation for updating pet
   const updateMutation = useMutation({
     mutationFn: async (updatedData) => {
-      const res = await axiosSecure.put(`/pets/${id}`, updatedData);
+      const res = await axiosSecure.put(`/admin-pets/${id}`, updatedData);
       return res.data;
     },
     onSuccess: () => {

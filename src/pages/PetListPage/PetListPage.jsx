@@ -249,7 +249,7 @@ const PetListPage = () => {
         />
 
         {/* Filter Controls */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+        <div className="flex flex-col  md:flex-row justify-between items-center gap-4 mb-8">
           <div className="relative  md:w-[500px]">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -309,7 +309,7 @@ const PetListPage = () => {
                 pets.map((pet) => (
                   <div
                     key={pet._id}
-                    className="bg-white rounded-lg shadow-md p-4 border border-gray-200 hover:shadow-lg transition"
+                    className="backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8  border-2 border-secondary/15 rounded-lg shadow-md p-8  hover:shadow-lg transition"
                   >
                     <img
                       src={pet.pteImage}
@@ -334,7 +334,7 @@ const PetListPage = () => {
                     </div>
                     <Link
                       to={`/pet-details/${pet._id}`}
-                      className="block mt-4 bg-secondary text-white text-center py-2 rounded hover:bg-lime-700 transition"
+                      className="block mt-4 bg-secondary text-white text-center py-2 rounded hover:bg-secondary/70 transition"
                     >
                       View Details
                     </Link>

@@ -28,7 +28,7 @@ const DonationsEditePage = () => {
   const { data: donation, isLoading } = useQuery({
     queryKey: ["donation", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/donations/${id}`);
+      const res = await axiosSecure.get(`/donation-details/${id}`);
       return res.data;
     },
     enabled: !!id,
@@ -109,7 +109,7 @@ const DonationsEditePage = () => {
       setImagesubmite(false);
     } catch (error) {
       Swal.fire({
-        icon: "error",
+        icon: "error",error,
         title: "Image upload failed",
         text: "Please try again.",
       });

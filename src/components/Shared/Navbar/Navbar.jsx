@@ -70,7 +70,7 @@ const Navbar = () => {
               <FaDonate /> Donation Campaigns
             </NavLink>
           </div>
-          <div className="hidden md:flex gap-6 text-gray-700 items-center">
+          <div className="hidden lg:flex gap-6 text-gray-700 items-center">
             {loading ? (
               <div className="flex flex-row items-center gap-3">
                 {/* Dropdown Skeleton btn */}
@@ -121,7 +121,7 @@ const Navbar = () => {
                     </div>
 
                     {dropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-40 bg-gradient-to-t from-secondary/ via-bash to-secondary/8 border-2 border-secondary/15  rounded-lg shadow-lg z-50">
+                      <div className="absolute right-0 mt-2 w-40 bg-white border-2 border-secondary/50  rounded-lg shadow-lg z-50">
                         <NavLink
                           to="/dashboard"
                           className="flex items-center gap-2 px-4 py-2 hover:bg-secondary hover:text-white rounded-lg text-sm text-gray-700"

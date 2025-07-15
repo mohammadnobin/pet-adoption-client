@@ -109,7 +109,7 @@ const DonationPage = () => {
                   </p>
                   <Link to={`/donationDetais/${donation._id}`}>
                   <button
-                    className="mt-auto bg-secondary text-white py-2 rounded hover:bg-secondary/90 transition"
+                    className="mt-auto bg-secondary text-white py-2 rounded px-4 cursor-pointer hover:bg-secondary/90 transition"
                     >
                     View Details
                   </button>

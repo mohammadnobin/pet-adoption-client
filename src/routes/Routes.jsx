@@ -24,6 +24,8 @@ import AllPets from "../pages/AllPets/AllPets";
 import UpDatePetPage from "../pages/UpDatePetpage/UpDatePetPage";
 import UpdatePetPageUser from "../pages/UpdatePetPageUser/UpdatePetPageUser";
 import DonationsEditePage from "../pages/DonationsEdit/DonationsEditePage";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import DahsBoardHomePage from "../pages/DashBoardHomePage/DahsBoardHomePage";
 
 export const router = createBrowserRouter([
   {
@@ -84,7 +86,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h2>home</h2>,
+        element: <DahsBoardHomePage />
       },
       {
         path: "add-pet",
@@ -156,4 +158,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '*',
+    element: <ErrorPage />
+  }
 ]);

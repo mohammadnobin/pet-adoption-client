@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { format } from "date-fns";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -33,6 +34,7 @@ const PetDetailsPage = () => {
       return res.data;
     },
   });
+  console.log(pet);
 
   // Mutation for adoption request
   const { mutateAsync: submitAdoption, isPending } = useMutation({
@@ -93,7 +95,7 @@ const PetDetailsPage = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Pet Info Section */}
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+      {/* <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
         <img
           src={pet.pteImage}
           alt={pet.petName}
@@ -115,18 +117,6 @@ const PetDetailsPage = () => {
           <p className="text-gray-700">
             <strong>Short Description:</strong> {pet.shortDescription}
           </p>
-          {/* {pet?.adopted === "pending" ? (
-            <button className="mt-6 cursor-not-allowed bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition">
-              Request Pending
-            </button>
-          ) : (
-            <button
-              onClick={() => setShowModal(true)}
-              className="mt-6 cursor-pointer bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition"
-            >
-              🐾 Adopt Me
-            </button>
-          )} */}
 
           {pet?.adopted === "request" ? (
             <button className="mt-6 cursor-not-allowed bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition">
@@ -154,7 +144,92 @@ const PetDetailsPage = () => {
             </button>
           )}
         </div>
+      </div> */}
+
+<div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-4 max-w-5xl mx-auto backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8  border-2 border-secondary/15 rounded-2xl shadow-lg">
+      <img
+        src={pet.pteImage}
+        alt={pet.petName}
+        className="w-full md:w-1/2 h-80 md:h-[450px] object-cover rounded-2xl shadow-lg border"
+      />
+      <div className="flex-1 space-y-4">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary tracking-tight">
+          {pet.petName}
+        </h2>
+
+        <p className="text-gray-700">
+          <strong>Category:</strong> {pet.petCategory}
+        </p>
+        <p className="text-gray-700">
+          <strong>Age:</strong> {pet.petAge} year{pet.petAge > 1 ? "s" : ""}
+        </p>
+        <p className="text-gray-700">
+          <strong>Location:</strong> {pet.petlocation}
+        </p>
+        <p className="text-gray-700">
+          <strong>Short Description:</strong> {pet.shortDescription}
+        </p>
+        <p className="text-gray-700">
+          <strong>Long Description:</strong> {pet.longDescription}
+        </p>
+        <p className="text-gray-700">
+          <strong>Added At:</strong>{" "}
+          {format(new Date(pet.addedAt), "MMMM d, yyyy, h:mm a")}
+        </p>
+
+        {pet?.adopted === "request" ? (
+          <button className="mt-6 cursor-not-allowed bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition">
+            Request Pending
+          </button>
+        ) : user?.email === pet?.ownerEmail ? (
+          <button
+            onClick={() =>
+              Swal.fire(
+                "Oops!",
+                "This is your pet. You cannot adopt your own pet!",
+                "warning"
+              )
+            }
+            className="mt-6 cursor-pointer bg-gray-400 text-white px-6 py-2 rounded-xl"
+          >
+            🐾 Adopt Me
+          </button>
+        ) : pet.adopted === "notAdopted" ? (
+          <button
+            onClick={() => setShowModal(true)}
+            className="mt-6 cursor-pointer bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition"
+          >
+            🐾 Adopt Me
+          </button>
+        ) : (
+          <button
+            disabled
+            className="mt-6 cursor-not-allowed bg-gray-300 text-gray-600 px-6 py-2 rounded-xl"
+          >
+            Already Adopted
+          </button>
+        )}
       </div>
+
+      {/* Modal placeholder if needed */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 px-4">
+          <div className="bg-white p-6 rounded-lg max-w-md w-full relative shadow-xl">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl"
+              onClick={() => setShowModal(false)}
+            >
+              ✕
+            </button>
+            <h3 className="text-xl font-semibold mb-4 text-center text-secondary">
+              Adoption Request for {pet.petName}
+            </h3>
+            {/* Your adoption form or info here */}
+          </div>
+        </div>
+      )}
+    </div>
+
 
       {/* Modal */}
       {showModal && (

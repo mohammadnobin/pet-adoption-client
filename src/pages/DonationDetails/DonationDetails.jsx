@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Container from "../../components/Shared/Container";
 import Title from "../../components/Shared/Title/Title";
 import Payment from "../Payment/Payment";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import Skeleton from "react-loading-skeleton";
 
 const DonationDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const [showModal, setShowModal] = useState(false);
   const [amount, setAmount] = useState("");
+  const {loading}= useAuth()
 
   // Get donation details
   const { data: donation, isLoading,refetch  } = useQuery({
     queryKey: ["donation", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/donations/${id}`);
+      const res = await axiosSecure.get(`/donation-details/${id}`);
       return res.data;
     },
   });
@@ -30,7 +33,24 @@ const DonationDetails = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading || loading) {
+    return (
+      // Skeleton Loader
+      <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div className="w-full md:w-1/2 h-80 md:h-[450px]">
+          <Skeleton height="100%" className="rounded-2xl" />
+        </div>
+        <div className="flex-1 space-y-4 w-full">
+          <Skeleton height={32} width="60%" />
+          <Skeleton height={24} width="40%" />
+          <Skeleton height={24} width="50%" />
+          <Skeleton height={24} width="70%" />
+          <Skeleton height={80} />
+          <Skeleton height={40} width="30%" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Container>

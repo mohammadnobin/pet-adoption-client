@@ -41,22 +41,24 @@ const AllDonationsAdmin = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      refetch()
+      refetch();
       Swal.fire({
-      icon: "success",
-      title: `Donation ${data.status === "paused" ? "Paused" : "Resumed"}`,
-      text: `The donation campaign has been successfully ${data.status === "paused" ? "paused" : "resumed"}.`,
-      timer: 2000,
-      showConfirmButton: false,
-    });
+        icon: "success",
+        title: `Donation ${data.status === "paused" ? "Paused" : "Resumed"}`,
+        text: `The donation campaign has been successfully ${
+          data.status === "paused" ? "paused" : "resumed"
+        }.`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
     },
-      onError: () => {
-    Swal.fire({
-      icon: "error",
-      title: "Error!",
-      text: "Failed to update donation status.",
-    });
-  },
+    onError: () => {
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to update donation status.",
+      });
+    },
   });
 
   const handlePauseToggle = (campaign) => {
@@ -191,17 +193,21 @@ const AllDonationsAdmin = () => {
                       </div>
                     </td>
                     <td className="px-4 py-3 flex justify-center items-center gap-2 flex-wrap">
-     <button
-  onClick={() => handlePauseToggle(donation)}
-  className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
-    donation.pause === "pause"
-      ? "bg-green-500 hover:bg-green-600"
-      : "bg-yellow-500 hover:bg-yellow-600"
-  }`}
->
-  {donation.pause === "pause" ? <Play size={16} /> : <Pause size={16} />}
-  {donation.pause === "pause" ? "Resume" : "Pause"}
-</button>
+                      <button
+                        onClick={() => handlePauseToggle(donation)}
+                        className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
+                          donation.pause === "pause"
+                            ? "bg-green-500 hover:bg-green-600"
+                            : "bg-yellow-500 hover:bg-yellow-600"
+                        }`}
+                      >
+                        {donation.pause === "pause" ? (
+                          <Play size={16} />
+                        ) : (
+                          <Pause size={16} />
+                        )}
+                        {donation.pause === "pause" ? "Resume" : "Pause"}
+                      </button>
 
                       <button
                         onClick={() =>
@@ -262,17 +268,21 @@ const AllDonationsAdmin = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-     <button
-  onClick={() => handlePauseToggle(donation)}
-  className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
-    donation.pause === "pause"
-      ? "bg-green-500 hover:bg-green-600"
-      : "bg-yellow-500 hover:bg-yellow-600"
-  }`}
->
-  {donation.pause === "pause" ? <Play size={16} /> : <Pause size={16} />}
-  {donation.pause === "pause" ? "Resume" : "Pause"}
-</button>
+                    <button
+                      onClick={() => handlePauseToggle(donation)}
+                      className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
+                        donation.pause === "pause"
+                          ? "bg-green-500 hover:bg-green-600"
+                          : "bg-yellow-500 hover:bg-yellow-600"
+                      }`}
+                    >
+                      {donation.pause === "pause" ? (
+                        <Play size={16} />
+                      ) : (
+                        <Pause size={16} />
+                      )}
+                      {donation.pause === "pause" ? "Resume" : "Pause"}
+                    </button>
 
                     <button
                       onClick={() =>

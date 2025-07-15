@@ -39,16 +39,26 @@ export const router = createBrowserRouter([
         element: <PetListPage />,
       },
       {
-        path: '/pet-details/:id',
-        element: <PetDetailsPage />
+        path: "/pet-details/:id",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <PetDetailsPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "donations",
         element: <Donationpage />,
       },
       {
-        path: 'donationDetais/:id',
-        element: <DonationDetails />
+        path: "donationDetais/:id",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <DonationDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "forbidden",
@@ -71,64 +81,79 @@ export const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    children:[
+    children: [
       {
         index: true,
-        element: <h2>home</h2>
+        element: <h2>home</h2>,
       },
-        {
-            path: 'add-pet',
-            element: <AddPetPage />
-        },
-        {
-          path:'my-pets',
-          element:<MyAddedPets />
-        },
-        {
-          path: 'pet-update/:id',
-          element: <UpdatePetPageUser />
-        },
-        {
-          path:'adoption-requests',
-          element:<AdoptionRequestPage />
-        },
-        {
-          path:'create-campaign',
-          element: <CreateDonationPage />
-        },
-        {
-          path: 'donationsedit/:id',
-          element: <DonationsEditePage />
-        },
-        {
-          path: 'my-campaigns',
-          element: <MyDonationCampaignsPage />
-        },
-        {
-          path:'my-donations',
-          element: <MyDonationPage />
-        },
-        {
-          path: 'profile',
-          element: <MyProfilePage />
-        },
-        {
-          path: 'users',
-          element:<AdminRoute><Users /></AdminRoute> 
-        },
-        {
-          path: 'all-donations',
-          element:<AdminRoute><AllDonations /></AdminRoute> 
-        },
-        {
-          path: 'all-pets',
-          element:<AdminRoute><AllPets /></AdminRoute> 
-        },
-        {
-          path: 'pets-admin-update/:id',
-          element: <AdminRoute><UpDatePetPage /></AdminRoute>
-        }
-
-    ]
+      {
+        path: "add-pet",
+        element: <AddPetPage />,
+      },
+      {
+        path: "my-pets",
+        element: <MyAddedPets />,
+      },
+      {
+        path: "pet-update/:id",
+        element: <UpdatePetPageUser />,
+      },
+      {
+        path: "adoption-requests",
+        element: <AdoptionRequestPage />,
+      },
+      {
+        path: "create-campaign",
+        element: <CreateDonationPage />,
+      },
+      {
+        path: "donationsedit/:id",
+        element: <DonationsEditePage />,
+      },
+      {
+        path: "my-campaigns",
+        element: <MyDonationCampaignsPage />,
+      },
+      {
+        path: "my-donations",
+        element: <MyDonationPage />,
+      },
+      {
+        path: "profile",
+        element: <MyProfilePage />,
+      },
+      {
+        path: "users",
+        element: (
+          <AdminRoute>
+            <Users />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-donations",
+        element: (
+          <AdminRoute>
+            <AllDonations />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-pets",
+        element: (
+          <AdminRoute>
+            <AllPets />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "pets-admin-update/:id",
+        element: (
+          <AdminRoute>
+            <UpDatePetPage />
+          </AdminRoute>
+        ),
+      },
+    ],
   },
 ]);

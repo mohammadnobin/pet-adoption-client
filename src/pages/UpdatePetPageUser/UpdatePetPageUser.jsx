@@ -29,7 +29,7 @@ const UpdatePetPageUser = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/dashboard/all-pets";
+  const from = location.state?.from || "/dashboard/my-pets";
 
   const {
     register,

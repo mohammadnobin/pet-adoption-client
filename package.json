@@ -21,6 +21,7 @@
     "@stripe/stripe-js": "^7.4.0",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/react-query": "^5.81.5",
+    "@tanstack/react-table": "^8.21.3",
     "@tiptap/extension-highlight": "^3.0.1",
     "@tiptap/extension-image": "^3.0.1",
     "@tiptap/extension-link": "^3.0.1",

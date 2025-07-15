@@ -5,8 +5,6 @@ import HeroSection from "../../components/Home/HeroSection";
 import ServicesSection from "../../components/Home/ServicesSection";
 import AboutUsSection from "../../components/Home/AboutUsSection";
 import PetsCategorySection from "../../components/Home/PetsCategorySection";
-import { Fade } from "react-awesome-reveal";
-import TiptapEditor from "../../components/addPets/TiptapEditor";
 
 const HomePage = () => {
   return (

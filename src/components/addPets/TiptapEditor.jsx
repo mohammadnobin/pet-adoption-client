@@ -1,123 +1,213 @@
-import React from 'react';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+// // components/TextEditor.jsx
+// import { useEditor, EditorContent } from '@tiptap/react'
+// import StarterKit from '@tiptap/starter-kit'
+// import Link from '@tiptap/extension-link'
+// import { FaBold, FaItalic, FaUnderline, FaLink } from 'react-icons/fa'
 
-const TiptapEditor = () => {
+// export default function TextEditor() {
+//   const editor = useEditor({
+//     extensions: [
+//       StarterKit,
+//       Link,
+//     ],
+//     content: '<p>Write Something Awesome...</p>',
+//   })
+
+//   if (!editor) return null
+
+//   return (
+//     <div className="bg-[#1a1a2e] text-white p-4 rounded-lg w-full max-w-2xl mx-auto">
+//       <div className="flex gap-2 mb-2">
+//         <button onClick={() => editor.chain().focus().toggleBold().run()} className="hover:text-blue-400"><FaBold /></button>
+//         <button onClick={() => editor.chain().focus().toggleItalic().run()} className="hover:text-blue-400"><FaItalic /></button>
+//         <button onClick={() => editor.chain().focus().toggleUnderline().run()} className="hover:text-blue-400"><FaUnderline /></button>
+//         <button
+//           onClick={() => {
+//             const url = window.prompt('Enter URL');
+//             if (url) {
+//               editor.chain().focus().setLink({ href: url }).run()
+//             }
+//           }}
+//           className="hover:text-blue-400"
+//         >
+//           <FaLink />
+//         </button>
+//       </div>
+
+//       <div className="bg-[#0f0f1a] p-3 rounded min-h-[120px]">
+//         <EditorContent editor={editor} />
+//       </div>
+
+//       <button
+//         onClick={() => console.log(editor.getHTML())}
+//         className="mt-4 px-4 py-2 rounded bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
+//         disabled={editor.getText().trim().length === 0}
+//       >
+//         Save Note
+//       </button>
+//     </div>
+//   )
+// }
+
+
+
+// components/TextEditor.jsx
+// import { useEditor, EditorContent } from '@tiptap/react'
+// import StarterKit from '@tiptap/starter-kit'
+// import Link from '@tiptap/extension-link'
+// import Underline from '@tiptap/extension-underline'
+// import TextAlign from '@tiptap/extension-text-align'
+
+// import {
+//   FaBold, FaItalic, FaUnderline, FaLink, FaListUl, FaListOl,
+//   FaAlignLeft, FaAlignCenter, FaAlignRight, FaAlignJustify,
+//   FaUndo, FaRedo, FaQuoteRight, FaHeading, FaMinus
+// } from 'react-icons/fa'
+
+// export default function TextEditor() {
+//   const editor = useEditor({
+//     extensions: [
+//       StarterKit.configure({
+//         heading: { levels: [1, 2, 3] },
+//       }),
+//       Underline,
+//       Link,
+//       TextAlign.configure({
+//         types: ['heading', 'paragraph'],
+//       }),
+//     ],
+//     content: '<p>Write Something Awesome...</p>',
+//   })
+
+//   if (!editor) return null
+
+//   return (
+//     <div className="bg-[#1a1a2e] text-white p-4 rounded-lg w-full max-w-2xl mx-auto">
+//       {/* Toolbar */}
+//       <div className="flex flex-wrap gap-3 mb-4">
+//         {/* Formatting */}
+//         <button onClick={() => editor.chain().focus().toggleBold().run()} className="hover:text-blue-400"><FaBold /></button>
+//         <button onClick={() => editor.chain().focus().toggleItalic().run()} className="hover:text-blue-400"><FaItalic /></button>
+//         <button onClick={() => editor.chain().focus().toggleUnderline().run()} className="hover:text-blue-400"><FaUnderline /></button>
+//         <button onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className="hover:text-blue-400"><FaHeading /></button>
+//         <button
+//           onClick={() => {
+//             const url = window.prompt('Enter URL')
+//             if (url) {
+//               editor.chain().focus().setLink({ href: url }).run()
+//             }
+//           }}
+//           className="hover:text-blue-400"
+//         >
+//           <FaLink />
+//         </button>
+
+//         {/* Lists */}
+//         <button onClick={() => editor.chain().focus().toggleBulletList().run()} className="hover:text-blue-400"><FaListUl /></button>
+//         <button onClick={() => editor.chain().focus().toggleOrderedList().run()} className="hover:text-blue-400"><FaListOl /></button>
+
+//         {/* Alignment */}
+//         <button onClick={() => editor.chain().focus().setTextAlign('left').run()} className="hover:text-blue-400"><FaAlignLeft /></button>
+//         <button onClick={() => editor.chain().focus().setTextAlign('center').run()} className="hover:text-blue-400"><FaAlignCenter /></button>
+//         <button onClick={() => editor.chain().focus().setTextAlign('right').run()} className="hover:text-blue-400"><FaAlignRight /></button>
+//         <button onClick={() => editor.chain().focus().setTextAlign('justify').run()} className="hover:text-blue-400"><FaAlignJustify /></button>
+
+//         {/* Others */}
+//         <button onClick={() => editor.chain().focus().toggleBlockquote().run()} className="hover:text-blue-400"><FaQuoteRight /></button>
+//         <button onClick={() => editor.chain().focus().setHorizontalRule().run()} className="hover:text-blue-400"><FaMinus /></button>
+//         <button onClick={() => editor.chain().focus().undo().run()} className="hover:text-blue-400"><FaUndo /></button>
+//         <button onClick={() => editor.chain().focus().redo().run()} className="hover:text-blue-400"><FaRedo /></button>
+//       </div>
+
+//       {/* Editor Area */}
+//       <div className="bg-[#0f0f1a] p-3 rounded min-h-[150px]">
+//         <EditorContent editor={editor} />
+//       </div>
+
+//       {/* Save Button */}
+//       <button
+//         onClick={() => console.log(editor.getHTML())}
+//         className="mt-4 px-4 py-2 rounded bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
+//         disabled={editor.getText().trim().length === 0}
+//       >
+//         Save Note
+//       </button>
+//     </div>
+//   )
+// }
+
+
+
+import { useEditor, EditorContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Link from '@tiptap/extension-link'
+import Underline from '@tiptap/extension-underline'
+import TextAlign from '@tiptap/extension-text-align'
+import 'prosemirror-view/style/prosemirror.css'
+
+import {
+  FaBold, FaItalic, FaUnderline, FaLink, FaListUl, FaListOl,
+  FaAlignLeft, FaAlignCenter, FaAlignRight, FaAlignJustify,
+  FaUndo, FaRedo, FaQuoteRight, FaHeading, FaMinus
+} from 'react-icons/fa'
+import { useEffect } from 'react'
+
+export default function TextEditor({ value, onChange }) {
+
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        heading: { levels: [1, 2, 3] },
+        link: false,  
+        underline: false,  
+      }),
+      Underline,  
+      Link,       
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
     ],
-    content: '<p>Write Something Awesome...</p>',
-    editorProps: {
-      attributes: {
-        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-xl focus:outline-none min-h-[150px] p-4 border border-gray-700 rounded-md bg-gray-800 text-gray-200',
-      },
+    content: value || '',
+    onUpdate: ({ editor }) => {
+      onChange(editor.getHTML())
     },
-  });
+  })
 
-  if (!editor) {
-    return null;
-  }
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value || '')
+    }
+  }, [value])
+
+  if (!editor) return null
 
   return (
-    <div className="flex flex-col gap-2 p-4 bg-gray-900 rounded-lg shadow-lg">
-      {/* Toolbar */}
-      <div className="flex flex-wrap gap-2 p-2 border border-gray-700 rounded-md bg-gray-800">
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive('bold') ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          B
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive('italic') ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          I
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive('underline') ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          U
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive('strike') ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          S
-        </button>
-        
-        {/* Alignment */}
-        <button
-          onClick={() => editor.chain().focus().setTextAlign('left').run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive({ textAlign: 'left' }) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h8" />
-          </svg>
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setTextAlign('center').run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive({ textAlign: 'center' }) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setTextAlign('right').run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive({ textAlign: 'right' }) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        
-        {/* Link and Code */}
-        <button
-          onClick={() => {
-            const previousUrl = editor.getAttributes('link').href;
-            const url = window.prompt('URL', previousUrl);
-
-            // cancelled
-            if (url === null) {
-              return;
-            }
-
-            // empty
-            if (url === '') {
-              editor.chain().focus().unsetLink().run();
-              return;
-            }
-
-            // update link
-            editor.chain().focus().setLink({ href: url }).run();
-          }}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive('link') ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-.758l-.659-.659m0 0a4 4 0 000-5.656l1.102-1.101m7.584-3.149a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l-.659-.659" />
-          </svg>
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={`px-3 py-1 rounded-md text-sm font-medium ${editor.isActive('codeBlock') ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 20l-4-4 4-4" />
-          </svg>
-        </button>
+    <div className=" text-secondary p-4 rounded-lg">
+      <div className="flex flex-wrap gap-3 mb-4">
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleBold().run()}><FaBold /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleItalic().run()}><FaItalic /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleUnderline().run()}><FaUnderline /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}><FaHeading /></button>
+        <button type='button' className='cursor-pointer' onClick={() => {
+          const url = window.prompt('Enter URL')
+          if (url) {
+            editor.chain().focus().setLink({ href: url }).run()
+          }
+        }}><FaLink /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleBulletList().run()}><FaListUl /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleOrderedList().run()}><FaListOl /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().setTextAlign('left').run()}><FaAlignLeft /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().setTextAlign('center').run()}><FaAlignCenter /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().setTextAlign('right').run()}><FaAlignRight /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().setTextAlign('justify').run()}><FaAlignJustify /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleBlockquote().run()}><FaQuoteRight /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().setHorizontalRule().run()}><FaMinus /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().undo().run()}><FaUndo /></button>
+        <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().redo().run()}><FaRedo /></button>
       </div>
-
-      {/* Editor Content */}
-      <EditorContent editor={editor} />
-
-      <button className="self-end px-5 py-2 mt-4 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
-        Save Note
-      </button>
+      <div className="w-full border-2 border-secondary/15 p-2  rounded min-h-[150px]">
+        <EditorContent editor={editor} className="prose text-secondary min-h-[150px] focus:outline-none" />
+      </div>
     </div>
-  );
-};
-
-export default TiptapEditor;
+  )
+}

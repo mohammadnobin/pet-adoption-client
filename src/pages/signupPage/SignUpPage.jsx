@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { imageUpload } from "../../api/utils";
@@ -13,6 +13,8 @@ import { FaPaw } from "react-icons/fa";
 
 const SignUpPage = () => {
   const { createUser, updateUserProfile, loading } = useAuth();
+    const [uploadedImage, setUploadedImage] = useState(null);
+    const [imagesubmite, setImagesubmite] = useState(false);
   const {
     register,
     handleSubmit,
@@ -23,9 +25,10 @@ const SignUpPage = () => {
   const from = location.state?.from || "/";
 
   const onSubmit = async (data) => {
+      setImagesubmite(true);
+      const photo = uploadedImage 
+      if (!uploadedImage) return;
     const { name, email, password } = data;
-    const image = data.image[0];
-    const photo = await imageUpload(image);
     try {
       await createUser(email, password);
       await updateUserProfile(name, photo);
@@ -51,6 +54,12 @@ const SignUpPage = () => {
       });
     }
   };
+
+    const handleImageUpload = async (e) => {
+      const image = e.target.files[0];
+      const res = await imageUpload(image);
+      setUploadedImage(res);
+    };
 
   return (
       <div className="min-h-screen  px-4 py-6 relative">
@@ -91,7 +100,7 @@ const SignUpPage = () => {
             </div>
 
             {/* Photo */}
-            <div>
+            {/* <div>
               <label className="block  text-sm font-medium text-gray-700 mb-1">
                 Photo
               </label>
@@ -103,7 +112,32 @@ const SignUpPage = () => {
               {errors.image && (
                 <p className="text-sm text-red-500 mt-1">Image is required</p>
               )}
+            </div> */}
+                      {/* Image */}
+          <div>
+            <label className="block font-semibold mb-2">Pet Image</label>
+            <div className="border-4 border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-between flex-wrap gap-4">
+              <label className="cursor-pointer bg-secondary text-white px-4 py-2 rounded hover:bg-white hover:text-secondary duration-200 border-2 hover:border-secondary">
+                Upload
+                <input
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  type="file"
+                  accept="image/*"
+                />
+              </label>
+              {uploadedImage && (
+                <img
+                  className="w-[100px] h-[100px] object-cover rounded"
+                  src={uploadedImage}
+                  alt="pet"
+                />
+              )}
             </div>
+            {imagesubmite && !uploadedImage && (
+              <p className="text-red-500 text-sm mt-1">Image is required</p>
+            )}
+          </div>
 
             {/* Email */}
             <div>

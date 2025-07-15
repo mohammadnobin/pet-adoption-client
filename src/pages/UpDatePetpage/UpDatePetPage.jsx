@@ -241,6 +241,7 @@ import Swal from "sweetalert2";
 import { useParams, useNavigate, useLocation } from "react-router";
 import useUserRole from "../../hooks/useUserRole";
 import Title from "../../components/Shared/Title/Title";
+import TextEditor from "../../components/addPets/TiptapEditor";
 
 const categories = [
   { value: "Dog", label: "Dog" },
@@ -313,20 +314,24 @@ const UpdatePetPage = () => {
   });
 
   const onSubmit = async (data) => {
-    const petInfo = {
-      petName: data.name,
-      petAge: data.age,
-      petCategory: data.category?.value,
-      petlocation: data.location,
-      shortDescription: data.shortDesc,
-      longDescription: data.longDesc,
-      pteImage: uploadedImage || pet?.pteImage,
-      adopted: data.adopted?.value || "notAdopted",
-      updatedAt: new Date().toISOString(),
-    };
+  const parser = new DOMParser();
+  const plainText = parser.parseFromString(data.longDesc, 'text/html').body.textContent;
 
-    updateMutation.mutate(petInfo);
+  const petInfo = {
+    petName: data.name,
+    petAge: data.age,
+    petCategory: data.category?.value,
+    petlocation: data.location,
+    shortDescription: data.shortDesc,
+    longDescription: plainText, 
+    pteImage: uploadedImage || pet?.pteImage,
+    adopted: data.adopted?.value || "notAdopted",
+    updatedAt: new Date().toISOString(),
   };
+
+  updateMutation.mutate(petInfo);
+};
+
 
   const handleImageUpload = async (e) => {
     const image = e.target.files[0];
@@ -465,7 +470,7 @@ const UpdatePetPage = () => {
         </div>
 
         {/* Long Description */}
-        <div>
+        {/* <div>
           <label className="block font-semibold mb-1">Long Description</label>
           <textarea
             {...register("longDesc", { required: "Long description is required" })}
@@ -473,7 +478,20 @@ const UpdatePetPage = () => {
             rows={5}
           />
           {errors.longDesc && <p className="text-red-500 text-sm">{errors.longDesc.message}</p>}
-        </div>
+        </div> */}
+
+        <Controller
+                      name="longDesc"
+                      control={control}
+                      defaultValue=""
+                      rules={{ required: "Long description is required" }}
+                      render={({ field }) => (
+                        <TextEditor
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+                      )}
+                    />
 
         {/* Submit */}
         <button

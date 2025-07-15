@@ -34,8 +34,6 @@ const PetDetailsPage = () => {
       return res.data;
     },
   });
-  console.log(pet);
-
   // Mutation for adoption request
   const { mutateAsync: submitAdoption, isPending } = useMutation({
     mutationFn: async (adoptionData) => {

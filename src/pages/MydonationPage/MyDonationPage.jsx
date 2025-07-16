@@ -162,7 +162,6 @@ const MyDonationPage = () => {
           </tbody>
         </table>
       </div>
-
       {/* 📱 Card View (Mobile) */}
       <div className="md:hidden space-y-4">
         {isLoading ? (

@@ -19,7 +19,7 @@ const MyDonationPage = () => {
       return res.data;
     },
   });
-  console.log(donations);
+
 
   const refundMutation = useMutation({
     mutationFn: async (donorId) => {

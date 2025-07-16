@@ -54,7 +54,7 @@ export function AppSidebar() {
         <div className="p-4">
           <NavLink
             to="/"
-            className="flex items-center gap-2 text-secondary font-bold text-3xl"
+            className="flex items-center gap-2 dark:text-white text-secondary font-bold text-3xl"
           >
             <FaPaw />
             <span>PetAdopt</span>
@@ -95,7 +95,7 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to="/dashboard/add-pet"
-                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                       >
                         <PawPrint className="w-5 h-5" />
                         <span>Add a Pet</span>
@@ -108,7 +108,7 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to="/dashboard/my-pets"
-                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                       >
                         <Inbox className="w-5 h-5" />
                         <span>My Added Pets</span>
@@ -121,7 +121,7 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to="/dashboard/adoption-requests"
-                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                       >
                         <Users className="w-5 h-5" />
                         <span>Adoption Request</span>
@@ -134,7 +134,7 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to="/dashboard/create-campaign"
-                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                       >
                         <HandCoins className="w-5 h-5" />
                         <span>Create Donation Campaign</span>
@@ -147,7 +147,7 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to="/dashboard/my-campaigns"
-                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                       >
                         <Gift className="w-5 h-5" />
                         <span>My Donation Campaigns</span>
@@ -155,30 +155,29 @@ export function AppSidebar() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
-                      {/* My Donations */}
-                      <SidebarMenuItem>
-                        <SidebarMenuButton asChild>
-                          <NavLink
-                            to="/dashboard/my-donations"
-                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
-                          >
-                            <HeartHandshake className="w-5 h-5" />
-                            <span>My Donations</span>
-                          </NavLink>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
+                  {/* My Donations */}
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <NavLink
+                        to="/dashboard/my-donations"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                      >
+                        <HeartHandshake className="w-5 h-5" />
+                        <span>My Donations</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
                   {role === "admin" && (
                     <>
-
-                      {/* All Donations */}
+                      {/* Users */}
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
                           <NavLink
-                            to="/dashboard/all-donations"
-                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                            to="/dashboard/users"
+                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                           >
-                            <Gift className="w-5 h-5" />
-                            <span>All Donations Campaigns</span>
+                            <Users className="w-5 h-5" />
+                            <span>All Users</span>
                           </NavLink>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
@@ -188,7 +187,7 @@ export function AppSidebar() {
                         <SidebarMenuButton asChild>
                           <NavLink
                             to="/dashboard/all-pets"
-                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                           >
                             <PawPrint className="w-5 h-5" />
                             <span>All Pets</span>
@@ -196,15 +195,15 @@ export function AppSidebar() {
                         </SidebarMenuButton>
                       </SidebarMenuItem>
 
-                      {/* Users */}
+                      {/* All Donations */}
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
                           <NavLink
-                            to="/dashboard/users"
-                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                            to="/dashboard/all-donations"
+                            className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
                           >
-                            <Users className="w-5 h-5" />
-                            <span>Users</span>
+                            <Gift className="w-5 h-5" />
+                            <span>All Donations Campaigns</span>
                           </NavLink>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
@@ -224,7 +223,7 @@ export function AppSidebar() {
             <SidebarMenuButton asChild>
               <NavLink
                 to="/dashboard/profile"
-                className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
               >
                 <User className="w-5 h-5" />
                 <span>Profile</span>
@@ -237,7 +236,7 @@ export function AppSidebar() {
             <SidebarMenuButton asChild>
               <button
                 onClick={handleLogout}
-                className="flex cursor-pointer items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                className="flex cursor-pointer items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
               >
                 <LogOut className="w-5 h-5" />
                 <span>Logout</span>

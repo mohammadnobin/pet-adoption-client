@@ -92,59 +92,7 @@ const PetDetailsPage = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      {/* Pet Info Section */}
-      {/* <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-        <img
-          src={pet.pteImage}
-          alt={pet.petName}
-          className="w-full md:w-1/2 h-80 md:h-[450px] object-cover rounded-2xl shadow-lg border"
-        />
-        <div className="flex-1 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-secondary tracking-tight">
-            {pet.petName}
-          </h2>
-          <p className="text-gray-700">
-            <strong>Category:</strong> {pet.petCategory}
-          </p>
-          <p className="text-gray-700">
-            <strong>Age:</strong> {pet.petAge} year(s)
-          </p>
-          <p className="text-gray-700">
-            <strong>Location:</strong> {pet.petlocation}
-          </p>
-          <p className="text-gray-700">
-            <strong>Short Description:</strong> {pet.shortDescription}
-          </p>
-
-          {pet?.adopted === "request" ? (
-            <button className="mt-6 cursor-not-allowed bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition">
-              Request Pending
-            </button>
-          ) : user?.email === pet?.ownerEmail ? (
-            <button
-              onClick={() =>
-                Swal.fire(
-                  "Oops!",
-                  "This is your pet. You cannot adopt your own pet!",
-                  "warning"
-                )
-              }
-              className="mt-6 cursor-pointer bg-gray-400 text-white px-6 py-2 rounded-xl"
-            >
-              🐾 Adopt Me
-            </button>
-          ) : (
-            <button
-              onClick={() => setShowModal(true)}
-              className="mt-6 cursor-pointer bg-secondary text-white px-6 py-2 rounded-xl hover:bg-secondary/90 transition"
-            >
-              🐾 Adopt Me
-            </button>
-          )}
-        </div>
-      </div> */}
-
-<div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-4 max-w-5xl mx-auto backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8  border-2 border-secondary/15 rounded-2xl shadow-lg">
+<div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-4 max-w-5xl mx-auto backdrop-blur custom_gradientd custom_gradientl dark:border-white  border-2 border-secondary/15 rounded-2xl shadow-lg">
       <img
         src={pet.pteImage}
         alt={pet.petName}
@@ -155,22 +103,22 @@ const PetDetailsPage = () => {
           {pet.petName}
         </h2>
 
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           <strong>Category:</strong> {pet.petCategory}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           <strong>Age:</strong> {pet.petAge} year{pet.petAge > 1 ? "s" : ""}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           <strong>Location:</strong> {pet.petlocation}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           <strong>Short Description:</strong> {pet.shortDescription}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           <strong>Long Description:</strong> {pet.longDescription}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-white">
           <strong>Added At:</strong>{" "}
           {format(new Date(pet.addedAt), "MMMM d, yyyy, h:mm a")}
         </p>
@@ -232,7 +180,7 @@ const PetDetailsPage = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 px-4">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 relative">
+          <div className="bg-white dark:bg-black rounded-xl shadow-xl w-full max-w-lg p-6 relative">
             <button
               onClick={() => setShowModal(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-red-500 text-xl"
@@ -244,27 +192,27 @@ const PetDetailsPage = () => {
             </h3>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
-                <label className="block mb-1 text-sm font-medium">
+                <label className="block mb-1 text-sm font-medium dark:text-white">
                   User Name
                 </label>
                 <input
                   type="text"
                   value={user.displayName}
                   disabled
-                  className="w-full px-4 py-2 border rounded bg-gray-100 text-gray-700"
+                  className="w-full px-4 py-2 border rounded bg-gray-100 dark:bg-black text-gray-700 dark:text-white"
                 />
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium">Email</label>
+                <label className="block mb-1 text-sm font-medium dark:text-white">Email</label>
                 <input
                   type="email"
                   value={user.email}
                   disabled
-                  className="w-full px-4 py-2 border rounded bg-gray-100 text-gray-700"
+                  className="w-full px-4 py-2 border rounded bg-gray-100 dark:bg-black text-gray-700 dark:text-white"
                 />
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium">
+                <label className="block mb-1 text-sm font-medium dark:text-white">
                   Phone Number
                 </label>
                 <input
@@ -272,20 +220,20 @@ const PetDetailsPage = () => {
                   {...register("phone", {
                     required: "Phone number is required",
                   })}
-                  className="w-full px-4 py-2 border rounded focus:outline-secondary"
+                  className="w-full px-4 py-2 border rounded dark:text-white focus:outline-secondary"
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-sm">{errors.phone.message}</p>
                 )}
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium">
+                <label className="block mb-1 text-sm font-medium dark:text-white">
                   Address
                 </label>
                 <input
                   type="text"
                   {...register("address", { required: "Address is required" })}
-                  className="w-full px-4 py-2 border rounded focus:outline-secondary"
+                  className="w-full px-4 py-2 border dark:text-white rounded focus:outline-secondary"
                 />
                 {errors.address && (
                   <p className="text-red-500 text-sm">

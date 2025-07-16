@@ -48,7 +48,7 @@ const DonationPage = () => {
     return (
       <Container>
         <h2 className="text-4xl font-bold text-center text-secondary mb-8">Donation Campaigns</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {[...Array(6)].map((_, idx) => (
             <div
               key={idx}
@@ -84,11 +84,11 @@ const DonationPage = () => {
         <p className="text-center text-gray-600 italic">No donation campaigns available.</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {donations.map((donation) => (
               <div
                 key={donation._id}
-                className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col border border-gray-200"
+                className="bg-white dark:bg-black rounded-lg shadow-md overflow-hidden flex flex-col border border-gray-200"
               >
                 <img
                   src={donation.petImage}
@@ -96,15 +96,15 @@ const DonationPage = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4 flex flex-col flex-grow">
-                  <h3 className="text-xl font-semibold mb-2 text-secondary">
+                  <h3 className="text-xl font-semibold mb-2 dark:text-white text-secondary">
                     {donation.petName || "Unnamed Pet"}
                   </h3>
-                  <p className="mb-1">
-                    <span className="font-semibold">Max Donation: </span>$
+                  <p className="mb-1 dark:text-white">
+                    <span className="font-semibold ">Max Donation: </span>$
                     {donation.maxDonation?.toFixed(2) || "0.00"}
                   </p>
-                  <p className="mb-3">
-                    <span className="font-semibold">Donated Amount: </span>$
+                  <p className="mb-3 dark:text-white">
+                    <span className="font-semibold ">Donated Amount: </span>$
                     {donation.collectedAmount?.toFixed(2) || "0.00"}
                   </p>
                   <Link to={`/donationDetais/${donation._id}`}>
@@ -121,7 +121,7 @@ const DonationPage = () => {
 
           <div ref={ref} className="mt-8 flex justify-center">
             {isFetchingNextPage ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
                 {[...Array(3)].map((_, idx) => (
                   <div
                     key={idx}

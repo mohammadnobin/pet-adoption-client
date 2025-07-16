@@ -5,7 +5,7 @@ const ServicesSection = () => {
   return (
     <section
           style={{ backgroundImage: `url(${sevicebg})` }}
-     className="py-20 bg-cover bg-center bg-no-repeat">
+     className="py-20 bg-cover dark:bg-blend-overlay dark:bg-black bg-center bg-no-repeat">
         <Container>
 
 

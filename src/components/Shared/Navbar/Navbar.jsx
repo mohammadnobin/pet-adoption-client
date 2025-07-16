@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AiOutlineMenu } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
+import {  MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import {
   FaPaw,
   FaBars,
@@ -16,11 +17,14 @@ import {
 } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import Container from "../Container";
+import { DarkModeContext } from "../../../context/DarkandLightContext/DarkModeProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { darkMode, toggleDarkMode } = use(DarkModeContext);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -32,25 +36,47 @@ const Navbar = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
-  const handleLogOut = () => {
-    logOut();
-  };
+const handleLogOut = () => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Do you really want to log out?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, log me out!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      logOut()
+        .then(() => {
+          Swal.fire("Logged out!", "You have been logged out successfully.", "success");
+        })
+        .catch((error) => {
+          Swal.fire("Oops!", error.message || "Something went wrong.", "error");
+        });
+    }
+  });
+};
 
   return (
-    <nav className="fixed top-0 text-base text-black font-bold left-0 w-full z-50 backdrop-blur bg-gradient-to-t from-secondary/8 via-bash to-secondary/8 border-b-2 border-secondary/15 px-4 py-3">
+    <nav className="fixed top-0 left-0 w-full z-50 text-base font-bold px-4 py-3 
+                text-black dark:text-white 
+                backdrop-blur  custom_gradientd
+                border-b-2 border-secondary/15 dark:border-white/15
+               custom_gradientl">
       <Container>
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-secondary font-bold text-2xl"
+            className="flex items-center gap-2 text-secondary dark:text-white font-bold text-2xl"
           >
             <FaPaw />
             <span>PetAdopt</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-6 text-gray-700 items-center">
+          <div className="hidden lg:flex gap-6 dark:text-white text-gray-700 items-center">
             <NavLink
               to="/"
               className="flex items-center gap-1 hover:text-secondary"
@@ -74,7 +100,7 @@ const Navbar = () => {
             {loading ? (
               <div className="flex flex-row items-center gap-3">
                 {/* Dropdown Skeleton btn */}
-                <div className="p-4 md:py-1 md:px-2 border-2 border-secondary/50 flex flex-row items-center gap-3 rounded-full">
+                <div className="p-4 md:py-1 md:px-2 border-2 border-secondary/50 dark:border-white/50 flex flex-row items-center gap-3 rounded-full">
                   {/* Menu icon skeleton */}
                   <Skeleton circle width={20} height={20} />
 
@@ -103,9 +129,9 @@ const Navbar = () => {
                       {/* Dropdown btn */}
                       <div
                         onClick={toggleDropdown}
-                        className="p-4 md:py-1 md:px-2 border-2 border-secondary/50 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+                        className="p-4 md:py-1 md:px-2 border-2 border-secondary/50 dark:border-white/50 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
                       >
-                        <AiOutlineMenu className="text-secondary" />
+                        <AiOutlineMenu className="text-secondary dark:text-white" />
                         <div className="hidden md:block">
                           {/* Avatar */}
                           <img
@@ -138,11 +164,31 @@ const Navbar = () => {
                 )}
               </>
             )}
+                       <button
+              className="text-black dark:text-white  cursor-pointer "
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? (
+                <MdOutlineWbSunny size={30} />
+              ) : (
+                <MdDarkMode size={30} />
+              )}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <button className="text-secondary" onClick={toggleMenu}>
+          <div className="lg:hidden flex items-center gap-x-2.5">
+           <button
+              className="text-black dark:text-white  cursor-pointer "
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? (
+                <MdOutlineWbSunny size={30} />
+              ) : (
+                <MdDarkMode size={30} />
+              )}
+            </button>
+                  <button className="text-secondary" onClick={toggleMenu}>
               {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
           </div>
@@ -151,7 +197,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden mt-4 flex flex-col gap-4 text-gray-700">
+        <div className="lg:hidden mt-4 flex flex-col gap-4 dark:text-white text-gray-700">
           <NavLink
             to="/"
             onClick={closeMenu}

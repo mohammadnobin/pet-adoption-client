@@ -27,6 +27,7 @@ export default function Page() {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 
   return (
+    <div className="dark:bg-black dark:text-white">
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
@@ -54,5 +55,6 @@ export default function Page() {
         {state === "loading" ? <LoadingSpinner /> : <Outlet />}
       </SidebarInset>
     </SidebarProvider>
+       </div>
   );
 }

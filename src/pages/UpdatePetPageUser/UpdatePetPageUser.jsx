@@ -134,7 +134,7 @@ const UpdatePetPageUser = () => {
   return (
  <>
     <Title titels="Update" titese="Pets" />
-    <div className="w-full max-w-4xl mx-auto p-6 backdrop-blur bg-gradient-to-t -mt-8 from-secondary/8 via-bash to-secondary/8 border-2 border-secondary/15 shadow-lg rounded-xl">
+    <div className="w-full max-w-4xl mb-11 mx-auto p-6 backdrop-blur custom_gradientd custom_gradientl border-2 dark:border-white border-secondary/15 shadow-lg rounded-xl">
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Pet Name & Age */}
@@ -143,7 +143,7 @@ const UpdatePetPageUser = () => {
             <label className="block font-semibold mb-1">Pet Name</label>
             <input
               {...register("name", { required: "Name is required" })}
-              className="w-full border-2 border-secondary/15 p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
           </div>
@@ -152,7 +152,7 @@ const UpdatePetPageUser = () => {
             <input
               type="number"
               {...register("age", { required: "Age is required" })}
-              className="w-full border-2 border-secondary/15 p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
             />
             {errors.age && <p className="text-red-500 text-sm">{errors.age.message}</p>}
           </div>
@@ -190,7 +190,7 @@ const UpdatePetPageUser = () => {
               control={control}
               rules={{ required: "Category is required" }}
               render={({ field }) => (
-                <Select {...field} options={categories} placeholder="Select category" />
+                <Select {...field} options={categories} className="dark:text-black" placeholder="Select category" />
               )}
             />
             {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
@@ -199,7 +199,7 @@ const UpdatePetPageUser = () => {
             <label className="block font-semibold mb-1">Location</label>
             <input
               {...register("location", { required: "Location is required" })}
-              className="w-full border-2 border-secondary/15 p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
             />
             {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
           </div>
@@ -209,7 +209,7 @@ const UpdatePetPageUser = () => {
           <label className="block font-semibold mb-1">Short Description</label>
           <input
             {...register("shortDesc", { required: "Short description is required" })}
-            className="w-full border-2 border-secondary/15 p-2 rounded"
+            className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
           />
           {errors.shortDesc && <p className="text-red-500 text-sm">{errors.shortDesc.message}</p>}
         </div>
@@ -219,7 +219,7 @@ const UpdatePetPageUser = () => {
           <label className="block font-semibold mb-1">Long Description</label>
           <textarea
             {...register("longDesc", { required: "Long description is required" })}
-            className="w-full border-2 border-secondary/15 p-2 rounded"
+            className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
             rows={5}
           />
           {errors.longDesc && <p className="text-red-500 text-sm">{errors.longDesc.message}</p>}

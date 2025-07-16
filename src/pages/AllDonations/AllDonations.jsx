@@ -133,182 +133,175 @@ const AllDonationsAdmin = () => {
 
   return (
     <div className="w-full mx-auto px-4 py-10 max-w-6xl">
-      <h2 className="text-3xl font-bold text-center text-secondary mb-8">
-        All Donation Campaigns
-      </h2>
+  <h2 className="text-3xl font-bold text-center text-secondary dark:text-white mb-8">
+    All Donation Campaigns
+  </h2>
 
-      {/* Desktop Table (md and up) */}
-      <div className="hidden md:block overflow-x-auto rounded-lg border">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-secondary text-white">
-            <tr>
-              <th className="px-4 py-3 text-left text-sm font-semibold">
-                Pet Name
-              </th>
-              <th className="px-4 py-3 text-left text-sm font-semibold">
-                Max Amount
-              </th>
-              <th className="px-4 py-3 text-left text-sm font-semibold">
-                Progress
-              </th>
-              <th className="px-4 py-3 text-center text-sm font-semibold">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-100">
-            {isLoading ? (
-              renderSkeletonRows()
-            ) : campaigns.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={4}
-                  className="text-center py-6 text-gray-500 italic"
-                >
-                  No donation campaigns found.
+  {/* Desktop Table (md and up) */}
+  <div className="hidden md:block overflow-x-auto rounded-lg border dark:border-white/20">
+    <table className="min-w-full divide-y divide-gray-200 dark:divide-white/10">
+      <thead className="bg-secondary text-white">
+        <tr>
+          <th className="px-4 py-3 text-left text-sm font-semibold">Pet Name</th>
+          <th className="px-4 py-3 text-left text-sm font-semibold">Max Amount</th>
+          <th className="px-4 py-3 text-left text-sm font-semibold">Progress</th>
+          <th className="px-4 py-3 text-center text-sm font-semibold">Actions</th>
+        </tr>
+      </thead>
+      <tbody className="bg-white dark:bg-black divide-y divide-gray-100 dark:divide-white/10">
+        {isLoading ? (
+          renderSkeletonRows()
+        ) : campaigns.length === 0 ? (
+          <tr>
+            <td
+              colSpan={4}
+              className="text-center py-6 text-gray-500 italic dark:text-gray-400"
+            >
+              No donation campaigns found.
+            </td>
+          </tr>
+        ) : (
+          campaigns.map((donation) => {
+            const totalCollected = donation.collectedAmount || 0;
+            const goal = donation.maxDonation || 0;
+
+            return (
+              <tr
+                key={donation._id}
+                className="hover:bg-secondary/10 transition-colors duration-150 dark:hover:bg-secondary/20"
+              >
+                <td className="px-4 py-3 font-medium dark:text-white">
+                  {donation.petName || "N/A"}
+                </td>
+                <td className="px-4 py-3 dark:text-white">${goal.toFixed(2)}</td>
+                <td className="px-4 py-3 w-[250px]">
+                  <ProgressBar
+                    completed={totalCollected}
+                    maxCompleted={goal}
+                  />
+                  <div className="flex justify-between text-xs mt-1 dark:text-gray-300">
+                    <p>Goal: {goal}</p>
+                    <p>Collected: {totalCollected}</p>
+                  </div>
+                </td>
+                <td className="px-4 py-3 flex justify-center items-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => handlePauseToggle(donation)}
+                    className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
+                      donation.pause === "pause"
+                        ? "bg-green-500 hover:bg-green-600"
+                        : "bg-yellow-500 hover:bg-yellow-600"
+                    }`}
+                  >
+                    {donation.pause === "pause" ? (
+                      <Play size={16} />
+                    ) : (
+                      <Pause size={16} />
+                    )}
+                    {donation.pause === "pause" ? "Resume" : "Pause"}
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      navigate(`/dashboard/donationsedit/${donation._id}`, {
+                        state: { from: location.pathname },
+                      })
+                    }
+                    className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm rounded"
+                  >
+                    <Pencil size={16} />
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(donation._id)}
+                    className="flex items-center gap-1 bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 text-sm rounded"
+                  >
+                    <Trash2 size={16} />
+                    Delete
+                  </button>
                 </td>
               </tr>
-            ) : (
-              campaigns.map((donation) => {
-                const totalCollected = donation.collectedAmount || 0;
-                const goal = donation.maxDonation || 0;
+            );
+          })
+        )}
+      </tbody>
+    </table>
+  </div>
 
-                return (
-                  <tr
-                    key={donation._id}
-                    className="hover:bg-secondary/10 transition-colors duration-150"
-                  >
-                    <td className="px-4 py-3 font-medium">
-                      {donation.petName || "N/A"}
-                    </td>
-                    <td className="px-4 py-3">${goal.toFixed(2)}</td>
-                    <td className="px-4 py-3 w-[250px]">
-                      <ProgressBar
-                        completed={totalCollected}
-                        maxCompleted={goal}
-                      />
-                      <div className="flex justify-between text-xs mt-1">
-                        <p>Goal: {goal}</p>
-                        <p>Collected: {totalCollected}</p>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 flex justify-center items-center gap-2 flex-wrap">
-                      <button
-                        onClick={() => handlePauseToggle(donation)}
-                        className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
-                          donation.pause === "pause"
-                            ? "bg-green-500 hover:bg-green-600"
-                            : "bg-yellow-500 hover:bg-yellow-600"
-                        }`}
-                      >
-                        {donation.pause === "pause" ? (
-                          <Play size={16} />
-                        ) : (
-                          <Pause size={16} />
-                        )}
-                        {donation.pause === "pause" ? "Resume" : "Pause"}
-                      </button>
+  {/* Mobile Card View (below md) */}
+  <div className="md:hidden space-y-6">
+    {isLoading
+      ? renderSkeletonCards()
+      : campaigns.map((donation) => {
+          const totalCollected = donation.collectedAmount || 0;
+          const goal = donation.maxDonation || 0;
 
-                      <button
-                        onClick={() =>
-                          navigate(`/dashboard/donationsedit/${donation._id}`, {
-                            state: { from: location.pathname },
-                          })
-                        }
-                        className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm rounded"
-                      >
-                        <Pencil size={16} />
-                        Edit
-                      </button>
-
-                      <button
-                        onClick={() => handleDelete(donation._id)}
-                        className="flex items-center gap-1 bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 text-sm rounded"
-                      >
-                        <Trash2 size={16} />
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Mobile Card View (below md) */}
-      <div className="md:hidden space-y-6">
-        {isLoading
-          ? renderSkeletonCards()
-          : campaigns.map((donation) => {
-              const totalCollected = donation.collectedAmount || 0;
-              const goal = donation.maxDonation || 0;
-
-              return (
-                <div
-                  key={donation._id}
-                  className="border rounded-lg p-4 shadow-sm bg-white"
-                >
-                  <h3 className="text-lg font-semibold mb-2">
-                    {donation.petName || "N/A"}
-                  </h3>
-                  <p className="mb-2">
-                    <strong>Max Amount: </strong>${goal.toFixed(2)}
-                  </p>
-                  <div className="mb-3">
-                    <ProgressBar
-                      completed={totalCollected}
-                      maxCompleted={goal}
-                    />
-                    <div className="flex justify-between text-sm mt-1">
-                      <span>Goal: {goal}</span>
-                      <span>Collected: {totalCollected}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => handlePauseToggle(donation)}
-                      className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
-                        donation.pause === "pause"
-                          ? "bg-green-500 hover:bg-green-600"
-                          : "bg-yellow-500 hover:bg-yellow-600"
-                      }`}
-                    >
-                      {donation.pause === "pause" ? (
-                        <Play size={16} />
-                      ) : (
-                        <Pause size={16} />
-                      )}
-                      {donation.pause === "pause" ? "Resume" : "Pause"}
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        navigate(`/dashboard/donationsedit/${donation._id}`, {
-                          state: { from: location.pathname },
-                        })
-                      }
-                      className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm rounded"
-                    >
-                      <Pencil size={16} />
-                      Edit
-                    </button>
-
-                    <button
-                      onClick={() => handleDelete(donation._id)}
-                      className="flex items-center gap-1 bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 text-sm rounded"
-                    >
-                      <Trash2 size={16} />
-                      Delete
-                    </button>
-                  </div>
+          return (
+            <div
+              key={donation._id}
+              className="border rounded-lg p-4 shadow-sm bg-white dark:bg-black dark:border-white/20"
+            >
+              <h3 className="text-lg font-semibold mb-2 dark:text-white">
+                {donation.petName || "N/A"}
+              </h3>
+              <p className="mb-2 dark:text-gray-300">
+                <strong>Max Amount: </strong>${goal.toFixed(2)}
+              </p>
+              <div className="mb-3">
+                <ProgressBar
+                  completed={totalCollected}
+                  maxCompleted={goal}
+                />
+                <div className="flex justify-between text-sm mt-1 dark:text-gray-300">
+                  <span>Goal: {goal}</span>
+                  <span>Collected: {totalCollected}</span>
                 </div>
-              );
-            })}
-      </div>
-    </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => handlePauseToggle(donation)}
+                  className={`flex items-center gap-1 px-3 py-1 text-sm rounded text-white ${
+                    donation.pause === "pause"
+                      ? "bg-green-500 hover:bg-green-600"
+                      : "bg-yellow-500 hover:bg-yellow-600"
+                  }`}
+                >
+                  {donation.pause === "pause" ? (
+                    <Play size={16} />
+                  ) : (
+                    <Pause size={16} />
+                  )}
+                  {donation.pause === "pause" ? "Resume" : "Pause"}
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate(`/dashboard/donationsedit/${donation._id}`, {
+                      state: { from: location.pathname },
+                    })
+                  }
+                  className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm rounded"
+                >
+                  <Pencil size={16} />
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(donation._id)}
+                  className="flex items-center gap-1 bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 text-sm rounded"
+                >
+                  <Trash2 size={16} />
+                  Delete
+                </button>
+              </div>
+            </div>
+          );
+        })}
+  </div>
+</div>
+
   );
 };
 

@@ -1,69 +1,3 @@
-// import { Link } from "react-router";
-// import Container from "../Shared/Container";
-// import Title from "../Shared/Title/Title";
-
-// const categories = [
-//   {
-//     name: "Dogs",
-//     slug: "dog",
-//     img: "https://i.ibb.co/ycDjT78d/3408.webp",
-//   },
-//   {
-//     name: "Cats",
-//     slug: "cat",
-//     img: "https://i.ibb.co/Hp2K82pm/rehoming-cat.jpg",
-//   },
-//   {
-//     name: "Rabbits",
-//     slug: "rabbit",
-//     img: "https://i.ibb.co/kVqG6bjz/sweet-cute-baby-bunny-beautiful-600nw-1950644401.webp",
-//   },
-//   {
-//     name: "Fish",
-//     slug: "fish",
-//     img: "https://i.ibb.co/TD6NQdsY/57a4db38dd089551028b465b.webp",
-//   },
-//   {
-//     name: "Birds",
-//     slug: "bird",
-//     img: "https://i.ibb.co/99wfYGSL/360-F-734959181-E57-Ca-N3rjyp-Nj1he-SMm-SU1-BZmzlslq-WT.jpg",
-//   },
-// ];
-
-// const PetsCategorySection = () => {
-//   return (
-//     <section className="pt-16 ">
-//     <Container>
-//         <Title titels='PetS' titese='Category' />
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-//           {categories.map((cat) => (
-//             <Link
-//               key={cat.slug}
-//               to={`/pets?category=${cat.slug}`}
-//               className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
-//             >
-//               <img
-//                 src={cat.img}
-//                 alt={cat.name}
-//                 className="w-full h-40 transform group-hover:scale-105 transition duration-300"
-//               />
-//               <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-//                 <h3 className="text-white text-xl font-semibold group-hover:underline">
-//                   {cat.name}
-//                 </h3>
-//               </div>
-//             </Link>
-//           ))}
-//         </div>
-//     </Container>
-//     </section>
-//   );
-// };
-
-// export default PetsCategorySection;
-
-
-
 import { Link } from "react-router";
 import Container from "../Shared/Container";
 import Title from "../Shared/Title/Title";
@@ -71,10 +5,10 @@ import { Slide, Zoom } from "react-awesome-reveal";
 
 const PetsCategorySection = () => {
   return (
-    <section className="py-16">
+    <section className="py-16 dark:bg-black">
       <Container>
         <Title titels="PetS" titese="Category" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             <Slide direction="left">
                  <div  className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
 

@@ -101,7 +101,7 @@ const AddPetPage = () => {
   return (
     <>
       <Title titels="Added" titese="Pets" />
-      <div className="w-full max-w-4xl mx-auto p-6 backdrop-blur bg-gradient-to-t -mt-8 from-secondary/8 via-bash to-secondary/8 border-2 border-secondary/15 shadow-lg rounded-xl">
+      <div className="w-full max-w-4xl mx-auto mb-10 p-6 backdrop-blur custom_gradientd custom_gradientl border-2 dark:border-white to-secondary/8  border-secondary/15 shadow-lg rounded-xl">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name & Age */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -109,7 +109,7 @@ const AddPetPage = () => {
               <label className="block font-semibold mb-1">Pet Name</label>
               <input
                 {...register("name", { required: "Name is required" })}
-                className="w-full border-2 border-secondary/15 p-2 rounded"
+                className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
                 placeholder="Enter pet name"
               />
               {errors.name && (
@@ -121,7 +121,7 @@ const AddPetPage = () => {
               <input
                 type="number"
                 {...register("age", { required: "Age is required" })}
-                className="w-full border-2 border-secondary/15 p-2 rounded"
+                className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
                 placeholder="Enter pet age"
               />
               {errors.age && (
@@ -166,6 +166,7 @@ const AddPetPage = () => {
                 rules={{ required: "Category is required" }}
                 render={({ field }) => (
                   <Select
+                  className="dark:text-black"
                     {...field}
                     options={categories}
                     placeholder="Select a category"
@@ -182,7 +183,7 @@ const AddPetPage = () => {
               <label className="block font-semibold mb-1">Pet Location</label>
               <input
                 {...register("location", { required: "Location is required" })}
-                className="w-full border-2 border-secondary/15 p-2 rounded"
+                className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
                 placeholder="Enter pickup location"
               />
               {errors.location && (
@@ -202,7 +203,7 @@ const AddPetPage = () => {
               {...register("shortDesc", {
                 required: "Short description is required",
               })}
-              className="w-full border-2 border-secondary/15 p-2 rounded"
+              className="w-full border-2 border-secondary/15 p-2 rounded dark:border-white"
               placeholder="Short note or description"
             />
             {errors.shortDesc && (

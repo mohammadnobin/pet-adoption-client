@@ -182,7 +182,7 @@ export default function TextEditor({ value, onChange }) {
   if (!editor) return null
 
   return (
-    <div className=" text-secondary p-4 rounded-lg">
+    <div className=" text-secondary dark:text-white p-4 rounded-lg">
       <div className="flex flex-wrap gap-3 mb-4">
         <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleBold().run()}><FaBold /></button>
         <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().toggleItalic().run()}><FaItalic /></button>
@@ -205,7 +205,7 @@ export default function TextEditor({ value, onChange }) {
         <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().undo().run()}><FaUndo /></button>
         <button type='button' className='cursor-pointer' onClick={() => editor.chain().focus().redo().run()}><FaRedo /></button>
       </div>
-      <div className="w-full border-2 border-secondary/15 p-2  rounded min-h-[150px]">
+      <div className="w-full border-2 dark:border-white border-secondary/15 p-2  rounded min-h-[150px]">
         <EditorContent editor={editor} className="prose text-secondary min-h-[150px] focus:outline-none" />
       </div>
     </div>

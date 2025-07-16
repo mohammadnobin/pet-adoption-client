@@ -9,7 +9,7 @@ const MainLayouts = () => {
   return (
     <div>
       <Navbar />
-      <div className=" mt-36">
+      <div className=" pt-36 bg-white dark:bg-black">
         <ScrollRestoration />
         {state === "loading" ? <LoadingSpinner /> : <Outlet />}
       </div>

@@ -69,6 +69,7 @@ const HeroSection = () => {
             Give a loving home to a furry friend in need. Discover our adorable
             puppies waiting to be adopted and start a lifelong bond today.
           </p>
+          {/* redicret to all pets page by click this button */}
           <Link
             to="/pets"
             className="inline-flex items-center text-center  gap-2 px-6 py-3 bg-secondary text-white rounded-full  text-lg font-semibold hover:bg-secondary/90 transition"

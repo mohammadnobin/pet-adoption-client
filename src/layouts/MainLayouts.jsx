@@ -1,3 +1,4 @@
+// this is my main layouts page
 import React from "react";
 import { Outlet, ScrollRestoration, useNavigation } from "react-router";
 import Navbar from "../components/Shared/Navbar/Navbar";

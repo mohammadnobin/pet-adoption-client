@@ -60,7 +60,7 @@ const HeroSection = () => {
       <div className=" flex flex-col md:flex-row items-center justify-between gap-10 animate-fadeIn">
         {/* Left Side */}
         <Slide direction="down">
-
+          {/* main details in  this sites */}
         <div className="space-y-6 max-w-xl">
           <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-black leading-tight">
             Ready to <span className="text-secondary">Adopt!</span>

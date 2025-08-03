@@ -1,3 +1,4 @@
+// this is router in this project
 import { createBrowserRouter } from "react-router";
 import MainLayouts from "../layouts/MainLayouts";
 import HomePage from "../pages/HomePage/HomePage";

@@ -1,3 +1,4 @@
+// payments gayway 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";

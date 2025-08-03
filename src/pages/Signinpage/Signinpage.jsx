@@ -1,45 +1,69 @@
+// Signin Page Component
+// ---------------------
+// This component handles the user login functionality.
+// It includes:
+// - Email & password login using react-hook-form
+// - Validation for password strength
+// - Login with social accounts
+// - Loading spinner while signing in
+// - Redirecting after successful login
+// - SweetAlert2 notifications for success and error
+// - Lottie animation for visual enhancement
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
-import useAuth from "../../hooks/useAuth";
-import Swal from "sweetalert2";
-import { TbFidgetSpinner } from "react-icons/tb";
-import axios from "axios";
-import Social from "../../components/Shared/Social/Social";
-import Lottie from "lottie-react";
-import loadingAnimation from "../../components/alljson/logninpage.json";
-import { FaPaw } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth"; // Custom Auth hook for signIn and loading state
+import Swal from "sweetalert2"; // For showing alerts
+import { TbFidgetSpinner } from "react-icons/tb"; // Loading spinner icon
+import axios from "axios"; // For posting user info to DB
+import Social from "../../components/Shared/Social/Social"; // Social login component
+import Lottie from "lottie-react"; // Animation library
+import loadingAnimation from "../../components/alljson/logninpage.json"; // Lottie JSON animation
+import { FaPaw } from "react-icons/fa"; // Logo icon
 
 const Signinpage = () => {
   const { signIn, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/";
+  const from = location.state?.from || "/"; // Redirect path after login
+
+  // React Hook Form setup
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
+  // Handle form submission
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {
+      // Sign in the user
       await signIn(email, password);
+
+      // Prepare user info for database
       const userInfo = {
         email,
         role: "user",
         created_at: new Date().toISOString(),
         last_log_in: new Date().toISOString(),
       };
+
+      // Save user info to database
       await axios.post(`${import.meta.env.VITE_BASE_URL}/users`, userInfo);
 
+      // Success alert
       Swal.fire({
         title: "Good job!",
-        text: "SignUp Successfull",
+        text: "SignUp Successful",
         icon: "success",
       });
-            navigate(from);
+
+      // Redirect to the previous page or home
+      navigate(from);
     } catch (error) {
+      // Error alert
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -59,13 +83,13 @@ const Signinpage = () => {
         <span>PetAdopt</span>
       </Link>
 
-      {/* Form Container */}
-      <div className="w-full max-w-md backdrop-blur custom_gradientd custom_gradientl border-2 dark:border-white  border-secondary/15 shadow-lg rounded-xl p-8">
+      {/* Login Form Container */}
+      <div className="w-full max-w-md backdrop-blur custom_gradientd custom_gradientl border-2 dark:border-white border-secondary/15 shadow-lg rounded-xl p-8">
         <h2 className="text-3xl font-bold text-center text-secondary mb-2">
           Welcome Back
         </h2>
         <p className="text-center text-gray-500 dark:text-white mb-6">
-          Login with Profast
+          Login with your account
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -98,24 +122,15 @@ const Signinpage = () => {
                 },
                 pattern: {
                   value: /(?=.*[A-Z])/,
-                  message:
-                    "Password must contain at least one uppercase letter",
+                  message: "Password must contain at least one uppercase letter",
                 },
               })}
               className="w-full border border-secondary/80 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary bg-white dark:bg-black dark:border-white"
               placeholder="Enter password"
             />
-            {errors.password?.type === "required" && (
-              <p className="text-sm text-red-500 mt-1">Password is required</p>
-            )}
-            {errors.password?.type === "minLength" && (
+            {errors.password && (
               <p className="text-sm text-red-500 mt-1">
-                Password must be at least 6 characters
-              </p>
-            )}
-            {errors.password?.type === "pattern" && (
-              <p className="text-sm text-red-500 mt-1">
-                Password must contain at least one uppercase letter
+                {errors.password.message}
               </p>
             )}
           </div>
@@ -128,7 +143,7 @@ const Signinpage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full cursor-pointer bg-secondary hover:bg-secondary/80  text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
+            className="w-full cursor-pointer bg-secondary hover:bg-secondary/80 text-white font-semibold py-2 rounded-md transition duration-200 flex justify-center items-center"
           >
             {loading ? (
               <TbFidgetSpinner className="animate-spin text-2xl" />
@@ -138,7 +153,7 @@ const Signinpage = () => {
           </button>
         </form>
 
-        {/* Register Redirect */}
+        {/* Redirect to Signup */}
         <p className="text-center text-sm text-gray-600 dark:text-white mt-4">
           Don’t have an account?{" "}
           <Link
@@ -155,7 +170,7 @@ const Signinpage = () => {
         </div>
       </div>
 
-      {/* Animation */}
+      {/* Animation Section */}
       <div className="hidden lg:block w-full max-w-md">
         <Lottie
           animationData={loadingAnimation}

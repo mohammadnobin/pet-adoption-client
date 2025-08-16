@@ -93,7 +93,7 @@ const handleLogOut = () => {
               to="/donations"
               className="flex items-center gap-1 hover:text-secondary"
             >
-              <FaDonate /> Donation Campaigns
+              <FaDonate /> Donations
             </NavLink>
           </div>
           <div className="hidden lg:flex gap-6 text-gray-700 items-center">
@@ -217,7 +217,7 @@ const handleLogOut = () => {
             onClick={closeMenu}
             className="flex items-center gap-2 hover:text-secondary"
           >
-            <FaDonate /> Donation Campaigns
+            <FaDonate /> Donations
           </NavLink>
 
           {!user && (

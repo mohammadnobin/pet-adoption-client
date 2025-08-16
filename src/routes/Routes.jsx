@@ -27,6 +27,8 @@ import UpdatePetPageUser from "../pages/UpdatePetPageUser/UpdatePetPageUser";
 import DonationsEditePage from "../pages/DonationsEdit/DonationsEditePage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import DahsBoardHomePage from "../pages/DashBoardHomePage/DahsBoardHomePage";
+import About from "../pages/AboutPage/About";
+import ContactPage from "../pages/ContactPage/ContactPage";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ export const router = createBrowserRouter([
       {
         path: "donations",
         element: <Donationpage />,
+      },
+      {
+        path: 'about',
+        element:<About/>
+      },
+      {
+        path: 'contact',
+        element:<ContactPage />
       },
       {
         path: "donationDetais/:id",

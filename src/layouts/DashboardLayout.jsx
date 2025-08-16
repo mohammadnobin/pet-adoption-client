@@ -18,7 +18,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"; // Sidebar layout utilities
 import { Outlet } from "react-router"; // To render nested routes inside the layout
-import LoadingSpinner from "../components/Shared/Loading/LoadingSpinner"; // Loading spinner for pending state
+import LoadingSpinner from "../components/Shared/Loading/LoadingSpinner"; 
 
 export default function Page() {
   // Get the current location path

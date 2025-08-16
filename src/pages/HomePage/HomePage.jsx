@@ -9,12 +9,14 @@ import { DarkModeContext } from "../../context/DarkandLightContext/DarkModeProvi
 import CallToAction from "../../components/Home/CallToAction";
 import CustomerReviwe from "../../components/Home/CustomerReviwe";
 import FAQSection from "../../components/Home/FAQSection";
+import NewPets from "../../components/Home/NewPets";
 
 
 const HomePage = () => {
   return (
     <div className="">
         <HeroSection />
+        <NewPets />
         <PetsCategorySection />
         <CallToAction />
       <ServicesSection />

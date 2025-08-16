@@ -10,6 +10,14 @@ import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import Container from "../Container";
 
 const Footer = () => {
+
+    const socialLinks = [
+    { icon: FaFacebookF, url: "https://www.facebook.com/mohammad.nobin.581840" },
+    { icon: FaLinkedinIn, url: "https://www.linkedin.com/in/mdnobin/" },
+    { icon: FaInstagram, url: "https://www.instagram.com/nobinnajrulislam/" },
+    { icon: FaTwitter, url: "#" },
+  ];
+
   return (
     <footer className="custom_gradientd custom_gradientl dark:border-white text-base-content border-t-2 border-secondary/20 pt-12 pb-6">
       <Container>
@@ -32,21 +40,19 @@ const Footer = () => {
               </span>
             </p>
             {/* Social Icons */}
-            <div className="flex gap-3 mt-4">
-              {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map(
-                (Icon, idx) => (
-                  <a
-                    key={idx}
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:scale-110 transition-transform text-secondary bg-white p-2 rounded-full border border-secondary"
-                  >
-                    <Icon size={16} />
-                  </a>
-                )
-              )}
-            </div>
+<div className="flex gap-4 pt-4">
+      {socialLinks.map(({ icon: Icon, url }, idx) => (
+        <a
+          key={idx}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:scale-110 transition-transform text-secondary bg-white p-2 rounded-full border border-secondary"
+        >
+          <Icon size={16} />
+        </a>
+      ))}
+    </div>
           </div>
 
           {/* Useful Links */}

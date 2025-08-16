@@ -5,10 +5,9 @@ const AboutUsSection = () => {
   return (
     <section className="py-24 custom_gradientd custom_gradientl">
         <Container>
-            
-   
+
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center   mb-16">
           <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
             About <span className="text-secondary">Our Platform</span>
           </h1>
@@ -18,7 +17,7 @@ const AboutUsSection = () => {
         </div>
 
         {/* Introduction */}
-        <div className="max-w-4xl mx-auto space-y-8 text-gray-800 dark:text-white text-lg leading-relaxed">
+        <div className="max-w-4xl mx-auto text-center space-y-8 text-gray-800 dark:text-white text-lg leading-relaxed">
           <p>
             Welcome to <span className="font-semibold text-secondary dark:text-white">[Your Website Name]</span>, a passionate initiative dedicated to helping animals find loving families and second chances at happiness.
             Our platform was created to make the pet adoption journey simple, transparent, and joyful for everyone involved.
@@ -34,7 +33,7 @@ const AboutUsSection = () => {
         </div>
 
         {/* How It Works Section */}
-        <div className="mt-20 max-w-5xl mx-auto">
+        <div className="mt-20  mx-auto">
           <h2 className="text-3xl font-bold dark:text-white text-gray-900 mb-10 text-center">
             How It Works
           </h2>
@@ -94,7 +93,7 @@ const AboutUsSection = () => {
         </div>
 
         {/* Team / Community (Optional) */}
-        <div className="mt-24 max-w-5xl mx-auto text-center">
+        <div className="mt-24  text-center">
           <h2 className="text-3xl font-bold dark:text-white text-gray-900 mb-6">
             Meet Our Team
           </h2>

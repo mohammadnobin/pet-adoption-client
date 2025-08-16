@@ -75,14 +75,14 @@ const TestimonialSlider = () => {
                 }`}
               >
                 <img src={reviewQuote} alt="reviewQuote" />
-                <p className='pt-2 pb-6 text-base font-medium'>
+                <p className='pt-2 pb-6 dark:text-white text-base font-medium'>
              {item.text}
                 </p>
                 <div className="border-t pt-6 border-dashed border-secondary flex items-center gap-x-4">
                   <img className='size-12 rounded-full' src={item.image} alt="" />
                   <div className="scroll-py-2">
-                    <h2 className='font-extrabold text-xl text-secondary'>{item.name}</h2>
-                    <h4 className='text-base font-medium'>{item.title}</h4>
+                    <h2 className='font-extrabold text-xl dark:text-white text-secondary'>{item.name}</h2>
+                    <h4 className='text-base dark:text-white font-medium'>{item.title}</h4>
                   </div>
                 </div>
               </div>

@@ -8,6 +8,7 @@ import PetsCategorySection from "../../components/Home/PetsCategorySection";
 import { DarkModeContext } from "../../context/DarkandLightContext/DarkModeProvider";
 import CallToAction from "../../components/Home/CallToAction";
 import CustomerReviwe from "../../components/Home/CustomerReviwe";
+import FAQSection from "../../components/Home/FAQSection";
 
 
 const HomePage = () => {
@@ -19,6 +20,7 @@ const HomePage = () => {
       <ServicesSection />
         <LetestBlog />
         <CustomerReviwe />
+        <FAQSection />
         <AboutUsSection />
     </div>
   );

@@ -1,8 +1,7 @@
 // Dashboard Layout Component
 // --------------------------
 // This component serves as the main layout for the dashboard.
-// It includes a sidebar, breadcrumb navigation, loading state handling,
-// and displays nested routes using <Outlet>.
+
 
 import { ScrollRestoration, useLocation, useNavigation } from "react-router";
 import { AppSidebar } from "@/components/app-sidebar"; // Custom Sidebar component

@@ -1,5 +1,4 @@
 // Dashboard Layout Component
-// --------------------------
 
 
 import { ScrollRestoration, useLocation, useNavigation } from "react-router";

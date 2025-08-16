@@ -2,7 +2,7 @@ import { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AiOutlineMenu } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
-import {  MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
+import { MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import {
   FaPaw,
   FaBars,
@@ -14,6 +14,8 @@ import {
   FaUserPlus,
   FaTachometerAlt,
   FaSignOutAlt,
+  FaInfoCircle,
+  FaEnvelope,
 } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import Container from "../Container";
@@ -36,34 +38,44 @@ const Navbar = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
-const handleLogOut = () => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "Do you really want to log out?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Yes, log me out!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      logOut()
-        .then(() => {
-          Swal.fire("Logged out!", "You have been logged out successfully.", "success");
-        })
-        .catch((error) => {
-          Swal.fire("Oops!", error.message || "Something went wrong.", "error");
-        });
-    }
-  });
-};
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, log me out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            Swal.fire(
+              "Logged out!",
+              "You have been logged out successfully.",
+              "success"
+            );
+          })
+          .catch((error) => {
+            Swal.fire(
+              "Oops!",
+              error.message || "Something went wrong.",
+              "error"
+            );
+          });
+      }
+    });
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 text-base font-bold px-4 py-3 
+    <nav
+      className="fixed top-0 left-0 w-full z-50 text-base font-bold px-4 py-3 
                 text-black dark:text-white 
                 backdrop-blur  custom_gradientd
                 border-b-2 border-secondary/15 dark:border-white/15
-               custom_gradientl">
+               custom_gradientl"
+    >
       <Container>
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -89,11 +101,26 @@ const handleLogOut = () => {
             >
               <FaDog /> Pet Listing
             </NavLink>
+            {user &&
             <NavLink
               to="/donations"
               className="flex items-center gap-1 hover:text-secondary"
             >
               <FaDonate /> Donations
+            </NavLink>       }
+     
+            <NavLink
+              to="/about"
+              className="flex items-center gap-1 hover:text-secondary"
+            >
+              <FaInfoCircle /> About
+            </NavLink>
+            
+            <NavLink
+              to="/contact"
+              className="flex items-center gap-1 hover:text-secondary"
+            >
+              <FaEnvelope /> Contact
             </NavLink>
           </div>
           <div className="hidden lg:flex gap-6 text-gray-700 items-center">
@@ -120,6 +147,7 @@ const handleLogOut = () => {
                     >
                       <FaSignInAlt /> Sign In
                     </NavLink>
+                    
                   </>
                 )}
 
@@ -164,7 +192,7 @@ const handleLogOut = () => {
                 )}
               </>
             )}
-                       <button
+            <button
               className="text-black dark:text-white  cursor-pointer "
               onClick={toggleDarkMode}
             >
@@ -178,7 +206,7 @@ const handleLogOut = () => {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-x-2.5">
-           <button
+            <button
               className="text-black dark:text-white  cursor-pointer "
               onClick={toggleDarkMode}
             >
@@ -188,7 +216,7 @@ const handleLogOut = () => {
                 <MdDarkMode size={30} />
               )}
             </button>
-                  <button className="text-secondary" onClick={toggleMenu}>
+            <button className="text-secondary cursor-pointer " onClick={toggleMenu}>
               {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
           </div>
@@ -197,7 +225,7 @@ const handleLogOut = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden mt-4 flex flex-col gap-4 dark:text-white text-gray-700">
+        <div className="lg:hidden mt-4 flex flex-col items-center gap-4 dark:text-white text-gray-700">
           <NavLink
             to="/"
             onClick={closeMenu}
@@ -212,13 +240,28 @@ const handleLogOut = () => {
           >
             <FaDog /> Pet Listing
           </NavLink>
-          <NavLink
-            to="/donations"
-            onClick={closeMenu}
-            className="flex items-center gap-2 hover:text-secondary"
-          >
-            <FaDonate /> Donations
-          </NavLink>
+
+                      {user &&
+            <NavLink
+              to="/donations"
+              className="flex items-center gap-1 hover:text-secondary"
+            >
+              <FaDonate /> Donations
+            </NavLink>       }
+     
+            <NavLink
+              to="/about"
+              className="flex items-center gap-1 hover:text-secondary"
+            >
+              <FaInfoCircle /> About
+            </NavLink>
+            
+            <NavLink
+              to="/contact"
+              className="flex items-center gap-1 hover:text-secondary"
+            >
+              <FaEnvelope /> Contact
+            </NavLink>
 
           {!user && (
             <>

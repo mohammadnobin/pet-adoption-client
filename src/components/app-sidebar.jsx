@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { FaPaw } from "react-icons/fa";
 import {
   Inbox,
@@ -90,6 +90,18 @@ export function AppSidebar() {
                 </>
               ) : (
                 <>
+                  {/* ✅ Add a Pet */}
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <Link
+                        to="/dashboard"
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 bg-white dark:bg-black dark:text-white shadow-[0_4px_0_#5046e5] hover:translate-y-[-2px] transition-all mb-4"
+                      >
+                        <PawPrint className="w-5 h-5" />
+                        <span>DahsBoard OverView</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
                   {/* ✅ Add a Pet */}
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>

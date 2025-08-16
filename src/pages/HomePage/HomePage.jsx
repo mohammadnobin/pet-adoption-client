@@ -7,6 +7,7 @@ import AboutUsSection from "../../components/Home/AboutUsSection";
 import PetsCategorySection from "../../components/Home/PetsCategorySection";
 import { DarkModeContext } from "../../context/DarkandLightContext/DarkModeProvider";
 import CallToAction from "../../components/Home/CallToAction";
+import CustomerReviwe from "../../components/Home/CustomerReviwe";
 
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
         <CallToAction />
       <ServicesSection />
         <LetestBlog />
+        <CustomerReviwe />
         <AboutUsSection />
     </div>
   );

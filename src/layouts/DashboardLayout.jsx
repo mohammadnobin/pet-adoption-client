@@ -1,6 +1,5 @@
 // Dashboard Layout Component
 // --------------------------
-// This component serves as the main layout for the dashboard.
 
 
 import { ScrollRestoration, useLocation, useNavigation } from "react-router";

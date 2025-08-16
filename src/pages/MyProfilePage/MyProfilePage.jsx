@@ -20,7 +20,7 @@ const MyProfilePage = () => {
         <img
           alt="profile"
           src={user.photoURL}
-          className="mx-auto object-cover rounded-full h-24 w-24 border-2 border-white dark:border-white"
+          className="mx-auto object-cover rounded-full h-40 w-40 border-2 border-white dark:border-white"
         />
       </a>
 

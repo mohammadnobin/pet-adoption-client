@@ -70,8 +70,8 @@ const TestimonialSlider = () => {
               <div
                 className={`transition-all duration-500 rounded-3xl p-8  shadow-md ${
                   isActive
-                    ? 'scale-100 -translate-y-10 opacity-100 custom_gradientl'
-                    : 'scale-90 opacity-40 bg-gray-100'
+                    ? 'scale-100 -translate-y-10 opacity-100 custom_gradientd custom_gradientl dark:border-white border-2 border-secondary/15'
+                    : 'scale-90 opacity-40 custom_gradientd custom_gradientl dark:border-white border-2 border-secondary/15'
                 }`}
               >
                 <img src={reviewQuote} alt="reviewQuote" />

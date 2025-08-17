@@ -181,7 +181,7 @@ const NewPets = () => {
 
           <div
   key={pet._id}
-  className="relative group rounded-3xl border border-secondary/20 bg-white dark:bg-gray-900 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden"
+  className="relative group rounded-3xl border border-secondary/20 bg-white dark:bg-black text-white shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden"
 >
   {/* Image */}
   <div className="relative h-64 overflow-hidden">
@@ -207,14 +207,14 @@ const NewPets = () => {
 
     {/* Age & Location */}
     <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-      <span className="flex items-center gap-1">
+      <span className="flex items-center border-2 px-3 py-1 bg-secondary/20 rounded-full border-secondary gap-1">
         🐾 Age: <span className="font-medium">{pet.petAge}</span>
       </span>
-      <span className="flex items-center gap-1">
+      <span className="flex border-2 px-3 py-1 bg-green-300/20 rounded-full border-green-400 items-center gap-1">
         📍 {pet.petlocation}
       </span>
     </div>
-
+<div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
     {/* Description */}
     <p className="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
       {pet.shortDescription}
@@ -224,6 +224,7 @@ const NewPets = () => {
     <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
       Added: {new Date(pet.addedAt).toLocaleDateString()}
     </div>
+  </div>
   </div>
 
   {/* Hover Overlay Border Effect */}

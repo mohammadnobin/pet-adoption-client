@@ -41,3 +41,12 @@ body{
 .dark .ProseMirror{
   color: white;
 }
+
+
+.swiper-pagination-clickable .swiper-pagination-bullet{
+   background-color: #94C6CB;
+   opacity: 1;
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active{
+ background-color: #03373D;
+}

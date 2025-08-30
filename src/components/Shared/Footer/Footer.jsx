@@ -1,3 +1,4 @@
+// this is footer page 
 import { Link } from "react-router";
 import {
   FaFacebookF,
